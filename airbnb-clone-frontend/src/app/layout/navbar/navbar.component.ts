@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, effect, OnInit} from '@angular/core';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {ToolbarModule} from 'primeng/toolbar';
 import {Button, ButtonDirective, ButtonModule} from 'primeng/button';
 import {MenuModule} from 'primeng/menu';
-import {MenuItem} from 'primeng/api';
+import {MenuItem, MenuItemCommandEvent} from 'primeng/api';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 @Component({
   selector: 'app-navbar',
@@ -12,30 +13,29 @@ import {MenuItem} from 'primeng/api';
     FaIconComponent,
     ToolbarModule,
     ButtonModule,
-    MenuModule
+    MenuModule,
+    OverlayPanelModule
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit{
-  items!: MenuItem[];
+
+  isAuthenticated = false;
+
+  constructor() {
+    effect(() => {
+    });
+  }
 
   ngOnInit() {
-    this.items = [
-      {
-        label: 'File',
-        items: [
-          { label: 'New', icon: 'pi pi-plus', command: () => alert('New clicked') },
-          { label: 'Open', icon: 'pi pi-folder-open', command: () => alert('Open clicked') }
-        ]
-      },
-      {
-        label: 'Edit',
-        items: [
-          { label: 'Undo', icon: 'pi pi-undo', command: () => alert('Undo clicked') },
-          { label: 'Redo', icon: 'pi pi-redo', command: () => alert('Redo clicked') }
-        ]
-      }
-    ];
+  }
+
+  login() {
+    this.isAuthenticated = !this.isAuthenticated;
+  }
+
+  logout() {
+    this.isAuthenticated = !this.isAuthenticated;
   }
 }

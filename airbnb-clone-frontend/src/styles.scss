@@ -116,6 +116,7 @@ body{
     }
   }
 
+
   .nav-link .p-button {
     background-color: rgb(249, 250, 251) !important;
     border:none !important;
@@ -179,6 +180,26 @@ body{
 
   .p-carousel-content .p-carousel-indicators{
     display:none;
+  }
+
+  .custom-menu-panel{
+    width : 200px !important;
+    min-height: 100px !important;
+    background-color: $white !important;
+  }
+
+  .custom-menu-item{
+    cursor: pointer;
+    margin-bottom: 0.5rem !important;
+    padding: 0.5rem !important;
+    text-decoration: none !important;
+    color: $textColor !important;
+
+    &:hover {
+      background-color: $primaryBackgroundColor !important;
+      padding: 0.5rem !important;
+      margin-bottom: 0.5rem !important;
+    }
   }
 
 }
