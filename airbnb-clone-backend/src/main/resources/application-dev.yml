@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_URL}:5432/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+#    url: jdbc:postgresql://localhost:5432/airbnb_clone
+#    username: user
+#    password: password
+
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    schemas: airbnb_clone
+    default-schema: airbnb_clone
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/airbnb_clone
+
+keycloak-client:
+  client-id: airbnb_client-app2app
+
+###
+###  ./mvnw flyway:repair -D"flyway.url=jdbc:postgresql://localhost:5432/airbnb_clone" -D"flyway.user=user" -D"flyway.password=password" -D"flyway.schemas=airbnb_clone"
+###

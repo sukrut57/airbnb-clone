@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: airbnb_clone_postgres
+    image: postgres:16.1
+    environment:
+      POSTGRES_DB: airbnb_clone
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - airbnb_clone_network
+    restart: unless-stopped
+
+  keycloak:
+    container_name: airbnb_clone_keycloak
+    image: quay.io/keycloak/keycloak:26.0.0
+    ports:
+      - '9090:8080'
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL_HOST: airbnb_clone_postgres
+      KC_DB_URL_DATABASE: airbnb_clone
+      KC_DB_USERNAME: user
+      KC_DB_PASSWORD: password
+    depends_on:
+      - postgres
+    networks:
+      - airbnb_clone_network
+    restart: unless-stopped
+    command: start-dev
+
+volumes:
+  postgres:
+  keycloak:
+
+networks:
+  airbnb_clone_network:
+    driver: bridge
