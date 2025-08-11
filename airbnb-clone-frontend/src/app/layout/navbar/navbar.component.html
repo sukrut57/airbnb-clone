@@ -1,7 +1,7 @@
 <p-toolbar>
   <ng-template pTemplate="start">
-    <fa-icon [icon]="['fab', 'airbnb']" size="2xl" class="pe-1"></fa-icon>
-    <div class="fs-4 fw-">airbnb</div>
+    <fa-icon [icon]="['fab', 'airbnb']" size="2xl" class="pe-1" style="cursor: pointer"></fa-icon>
+    <div class="fs-4 fw-bold" style="cursor: pointer">airbnb</div>
   </ng-template>
   <ng-template pTemplate="center">
     <div class="d-flex pe-3 border rounded-5 bg-white cursor-pointer shadow-sm">
@@ -20,7 +20,7 @@
 
   <ng-template pTemplate="end">
     <div class="d-flex align-items-center justify-content-between gap-2">
-      <div class="text-black">Airbnb your home</div>
+      <button class="p-button link">Airbnb your home</button>
       <fa-icon [icon]="['fab', 'github']" class="user-icon"></fa-icon>
     </div>
   </ng-template>

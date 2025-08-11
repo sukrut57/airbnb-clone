@@ -104,6 +104,18 @@ body{
     font-weight: $fontWeight !important;
   }
 
+  .p-button.link{
+    border: none !important;
+    background-color: transparent !important;
+    transition: none !important; // stops fade-out
+
+    &:hover{
+      background-color: $border-color !important;
+      border-radius: 25px !important;
+
+    }
+  }
+
   .nav-link .p-button {
     background-color: rgb(249, 250, 251) !important;
     border:none !important;
