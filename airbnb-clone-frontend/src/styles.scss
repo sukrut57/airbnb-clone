@@ -1,0 +1,182 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../public/scss/airbnb-variables";
+@import "../public/scss/lara-light/blue/theme";
+@import "primeng/resources/primeng";
+@import "bootstrap/scss/bootstrap";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+body{
+  font-family: $fontFamily !important;
+}
+
+// global styles for PrimeNG components
+@layer reset, primeng;
+
+//reset styles for PrimeNG components
+
+@layer reset {
+  p-toolbar{
+    color : $primaryColor;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+    font-family: $fontFamily !important;
+    background-color: $secondaryBorderColor !important;
+
+  }
+  .p-button {
+    background-color: $white !important;
+    font-family: $fontFamily !important;
+    font-size: $fontSize !important;
+    color: $black !important;
+  }
+  .p-button:focus {
+    box-shadow: none !important;
+  }
+
+  .p-button-label{
+    font-weight: $fontWeight !important;
+  }
+
+  .nav-link .p-button {
+    background-color: rgb(249, 250, 251) !important;
+    border:none !important;
+  }
+
+  .nav-link .p-button:hover {
+    background-color:  #ebebeb !important;
+  }
+
+  .nav-link .p-button .p-button-label {
+    text-decoration: none !important;
+  }
+
+  .menu-icon .p-button{
+    border:none !important;
+    background-color: #ebebeb !important;
+    border-radius: 50% !important;
+    fa-icon{
+      padding: 0 !important;
+    }
+  }
+
+  .p-carousel-container{
+    margin-top: 1rem !important;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    gap: 1.25rem;
+
+  }
+
+  .p-carousel .p-carousel-item:first-child {
+    display: none;
+
+  }
+  .p-carousel .p-carousel-item {
+    padding: 0 0.5rem !important;
+    cursor: pointer;
+
+    &:hover {
+      border-bottom: 2px solid $primaryLightColor !important;
+    }
+
+    .category-name {
+      padding-top: 0.5rem;
+      color: #717171;
+      white-space: nowrap !important;
+      font-size: 12px !important;
+
+
+    }
+
+  }
+  .p-ripple .p-element{
+    border: 1px solid $textColor !important;
+    border-radius: 50% !important;
+    padding: 5px !important;
+  }
+
+  .p-carousel-content .p-carousel-indicators{
+    display:none;
+  }
+
+}
+
+.mat-mdc-slide-toggle {
+
+  .mdc-switch__icons {
+    display: none !important;
+  }
+}
+
+.mdc-switch__track::after{
+  background-color: #000000 !important;
+}
+
+.mdc-switch__track::before{
+  background-color: #cfc6c6 !important;
+}
+.mdc-switch__handle::after{
+  background-color: #ffffff !important;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
