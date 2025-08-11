@@ -1,9 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../public/scss/airbnb-variables";
+@import "../public/scss/airbnb-fonts";
 @import "../public/scss/lara-light/blue/theme";
+
 @import "primeng/resources/primeng";
 @import "bootstrap/scss/bootstrap";
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
+
 
 /* 1. Use a more-intuitive box-sizing model */
 *, *::before, *::after {
@@ -14,6 +17,7 @@
 * {
   margin: 0;
 }
+
 
 /* 3. Enable keyword animations */
 @media (prefers-reduced-motion: no-preference) {
@@ -27,6 +31,7 @@ body {
   line-height: 1.5;
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
+  font-family: $fontFamily !important;
 }
 
 /* 6. Improve media defaults */
@@ -77,15 +82,20 @@ body{
     padding: 0 !important;
     box-sizing: border-box;
     font-family: $fontFamily !important;
-    background-color: $secondaryBorderColor !important;
-
+    background-color: $white !important;
   }
   .p-button {
     background-color: $white !important;
     font-family: $fontFamily !important;
     font-size: $fontSize !important;
     color: $black !important;
+    font-weight: 400 !important;
   }
+
+  .p-button.guests{
+    color: gray !important;
+  }
+
   .p-button:focus {
     box-shadow: none !important;
   }
@@ -178,5 +188,3 @@ body{
 }
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

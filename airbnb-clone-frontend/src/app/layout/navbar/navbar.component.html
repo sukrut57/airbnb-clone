@@ -1,0 +1,27 @@
+<p-toolbar>
+  <ng-template pTemplate="start">
+    <fa-icon [icon]="['fab', 'airbnb']" size="2xl" class="pe-1"></fa-icon>
+    <div class="fs-4 fw-">airbnb</div>
+  </ng-template>
+  <ng-template pTemplate="center">
+    <div class="d-flex pe-3 border rounded-5 bg-white cursor-pointer shadow-sm">
+      <div class="d-flex align-items-center justify-content-center ps-3">
+      </div>
+      <button pButton type="button" class="rounded-start-5 border-0">Anywhere</button>
+      <div class="separator"></div>
+      <button pButton type="button"  class="border-end-0 border-0">Anytime</button>
+      <div class="separator"></div>
+      <button pButton type="button" class="rounded-end-5 border-0 fw-bold guests">Add guests </button>
+      <div class="d-flex align-items-center justify-content-center">
+        <fa-icon [icon]="['fas', 'search']" class="search-icon"></fa-icon>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="end">
+    <div class="d-flex align-items-center justify-content-between gap-2">
+      <div class="text-black">Airbnb your home</div>
+      <fa-icon [icon]="['fab', 'github']" class="user-icon"></fa-icon>
+    </div>
+  </ng-template>
+</p-toolbar>

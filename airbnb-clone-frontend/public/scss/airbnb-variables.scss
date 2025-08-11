@@ -1,3 +1,4 @@
+
 // ------------- Custom Color variables ------------ //
 $dark: #222;
 $black: #000;
@@ -6,6 +7,8 @@ $border-color: #DDD;
 $secondaryBg: #222;
 $secondaryBorderColor: #B0B0B0;
 $footerBgColor: #F7F7F7;
+$primaryBackgroundColor: rgb(229, 231, 235);
+
 
 // ------------- PrimeNG Variables ------------ //
 $primaryColor: #F24B5B;
@@ -19,7 +22,7 @@ $highlightFocusBg: rgba($primaryColor, .24);
 $borderRadius: 6px !default;
 
 $textColor: #5B5B5B;
-$fontFamily: "Airbnb Cereal", sans-serif;
+$fontFamily: 'Airbnb Cereal', sans-serif;
 $fontSize: 1rem;
 
 $dialogBorderRadius: 12px;
