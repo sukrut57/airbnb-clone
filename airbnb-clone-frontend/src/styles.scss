@@ -129,12 +129,14 @@ body{
     text-decoration: none !important;
   }
 
-  .menu-icon .p-button{
+  .p-button.menu-icon{
     border:none !important;
+    padding: 10px 15px !important;
     background-color: #ebebeb !important;
     border-radius: 50% !important;
     fa-icon{
       padding: 0 !important;
+      font-size: 1rem !important;
     }
   }
 

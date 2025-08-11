@@ -19,9 +19,24 @@
   </ng-template>
 
   <ng-template pTemplate="end">
-    <div class="d-flex align-items-center justify-content-between gap-2">
+
+    <div class="d-flex align-items-center justify-content-between gap-3">
       <button class="p-button link">Airbnb your home</button>
       <fa-icon [icon]="['fab', 'github']" class="user-icon"></fa-icon>
+
+      <div class=" flex justify-content-center align-items-center">
+        <!-- Popup menu -->
+        <p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>
+
+        <!-- Button to toggle menu -->
+        <button
+          type="button"
+          class="p-button menu-icon"
+          (click)="menu.toggle($event)">
+          <fa-icon [icon]="['fas', 'bars']"></fa-icon>
+        </button>
+      </div>
+
     </div>
   </ng-template>
 </p-toolbar>
