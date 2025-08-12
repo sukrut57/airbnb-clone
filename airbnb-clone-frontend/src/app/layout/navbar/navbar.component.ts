@@ -1,10 +1,10 @@
 import {Component, effect, OnInit} from '@angular/core';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {ToolbarModule} from 'primeng/toolbar';
-import {Button, ButtonDirective, ButtonModule} from 'primeng/button';
+import {ButtonModule} from 'primeng/button';
 import {MenuModule} from 'primeng/menu';
-import {MenuItem, MenuItemCommandEvent} from 'primeng/api';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {AvatarComponent} from './avatar/avatar.component';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +14,8 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
     ToolbarModule,
     ButtonModule,
     MenuModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    AvatarComponent
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
@@ -32,14 +33,15 @@ export class NavbarComponent implements OnInit{
   }
 
   login() {
-    this.isAuthenticated = !this.isAuthenticated;
+    this.isAuthenticated = true;
   }
 
   logout() {
-    this.isAuthenticated = !this.isAuthenticated;
+    this.isAuthenticated = false;
   }
 
   routeToMyGitHub() {
     window.open('https://github.com/sukrut57/airbnb-clone');
   }
+
 }

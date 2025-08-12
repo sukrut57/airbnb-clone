@@ -1,0 +1,9 @@
+@if(imageUrl() != null){
+  <img [src]="imageUrl()" alt="profileImage" class="object-fit-contain" [ngClass]="avatarSize()">
+}
+@else {
+  <div [ngClass]="avatarSize()" class="d-flex align-items-center justify-content-center image-container" style="cursor: pointer;">
+    <fa-icon [icon]="['fas', 's']" class="user-icon"></fa-icon>
+  </div>
+
+}

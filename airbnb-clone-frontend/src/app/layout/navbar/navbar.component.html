@@ -24,20 +24,6 @@
       <button class="p-button link">Airbnb your home</button>
       <fa-icon [icon]="['fab', 'github']" class="user-icon" (click)="routeToMyGitHub()"></fa-icon>
 
-<!--      <div class=" flex justify-content-center align-items-center">-->
-<!--        &lt;!&ndash; Popup menu &ndash;&gt;-->
-<!--        <p-menu #menu [model]="currentMenuItems" [popup]="true" appendTo="body">-->
-<!--        </p-menu>-->
-
-<!--        &lt;!&ndash; Button to toggle menu &ndash;&gt;-->
-<!--        <button-->
-<!--          type="button"-->
-<!--          class="p-button menu-icon"-->
-<!--          (click)="menu.toggle($event)">-->
-<!--          <fa-icon [icon]="['fas', 'bars']"></fa-icon>-->
-<!--        </button>-->
-<!--      </div>-->
-
       @if(!isAuthenticated){
         <!-- Button to toggle overlay -->
         <button type="button" class="p-button menu-icon" (click)="menuPanel.toggle($event)">
@@ -54,6 +40,8 @@
       }
 
       @if(isAuthenticated){
+
+        <app-avatar [imageUrl] ="" avatarSize="avatar-sm"  ></app-avatar>
         <!-- Button to toggle overlay -->
         <button type="button" class="p-button menu-icon" (click)="menuPanel.toggle($event)">
           <fa-icon [icon]="['fas', 'bars']" ></fa-icon>
@@ -76,13 +64,8 @@
               Logout
             </div>
           </div>
-
-
         </p-overlayPanel>
-
       }
-
-
 
     </div>
   </ng-template>
