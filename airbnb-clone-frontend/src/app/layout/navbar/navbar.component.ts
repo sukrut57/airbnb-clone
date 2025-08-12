@@ -38,4 +38,8 @@ export class NavbarComponent implements OnInit{
   logout() {
     this.isAuthenticated = !this.isAuthenticated;
   }
+
+  routeToMyGitHub() {
+    window.open('https://github.com/sukrut57/airbnb-clone');
+  }
 }
