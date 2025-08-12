@@ -1,0 +1,17 @@
+.wrapper {
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-bottom-color: #DDD !important;
+  }
+
+  &.category-active {
+    border-bottom-color: #F25B5B !important;
+
+    &:hover {
+      border-bottom-color: #F25B5B !important;  // Keep active color on hover
+      cursor: default;  // Optional: show default cursor on active item
+    }
+  }
+}

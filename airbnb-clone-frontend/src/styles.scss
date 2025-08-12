@@ -158,16 +158,16 @@ body{
     padding: 0 0.5rem !important;
     cursor: pointer;
 
-    &:hover {
-      border-bottom: 2px solid $primaryLightColor !important;
-    }
+    //&:hover {
+    //  border-bottom: 2px solid $border-color !important;
+    //
+    //}
 
     .category-name {
       padding-top: 0.5rem;
       color: #717171;
       white-space: nowrap !important;
       font-size: 12px !important;
-
 
     }
 
@@ -201,6 +201,7 @@ body{
       margin-bottom: 0.5rem !important;
     }
   }
+
 
 }
 

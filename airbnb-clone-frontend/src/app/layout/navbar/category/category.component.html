@@ -1,1 +1,30 @@
-<p>category works!</p>
+<div class="row align-items-center">
+  <div class="col-9">
+    <p-carousel
+      [value]="categories"
+      [numVisible]="10"
+      [numScroll]="1"
+      [circular]="false"
+      [responsiveOptions]="responsiveOptions">
+
+      <ng-template let-category pTemplate="item">
+        <ng-container *ngIf="category.technicalName !== 'ALL'">
+
+          <div class="d-flex flex-column align-items-center justify-content-center wrapper"
+               (click)="onChangeCategory(category)" [class.category-active]="category.activated">
+
+            <img [src]="category.icon" alt="categoryImage" class="object-fit-contain icon-image" width="20" height="20">
+            <p class="category-name fs-6">{{ category.displayName }}</p>
+          </div>
+        </ng-container>
+      </ng-template
+      >
+
+    </p-carousel>
+  </div>
+  <div class="col-3">
+    hello
+  </div>
+
+</div>
+
