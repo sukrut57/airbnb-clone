@@ -1,4 +1,4 @@
-<div class="row align-items-center">
+<div class="row align-items-center border-bottom shadow-sm">
   <div class="col-9">
     <p-carousel
       [value]="categories"
@@ -23,7 +23,14 @@
     </p-carousel>
   </div>
   <div class="col-3">
-    hello
+    <button class="p-button filter-icon me-3" (click)="enableFilter()">
+      <img src = "assets/category-icons/filter-icon.svg" alt="filterIcon" width="30" height="20">
+      <span style="font-size: 12px; font-weight: 400">Filters</span>
+    </button>
+    <button class="p-button filter-icon" (click)="enableFilter()">
+      <span class="pe-3" style="font-size: 12px; font-weight: 400">Display before taxes</span>
+      <mat-slide-toggle></mat-slide-toggle>
+    </button>
   </div>
 
 </div>

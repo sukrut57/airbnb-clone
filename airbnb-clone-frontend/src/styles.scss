@@ -31,7 +31,6 @@ body {
   line-height: 1.5;
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
-  font-family: $fontFamily !important;
 }
 
 /* 6. Improve media defaults */
@@ -65,10 +64,6 @@ h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
-body{
-  font-family: $fontFamily !important;
-}
-
 // global styles for PrimeNG components
 @layer reset, primeng;
 
@@ -81,12 +76,10 @@ body{
     margin: 0 !important;
     padding: 0 !important;
     box-sizing: border-box;
-    font-family: $fontFamily !important;
     background-color: $white !important;
   }
   .p-button {
     background-color: $white !important;
-    font-family: $fontFamily !important;
     font-size: $fontSize !important;
     color: $black !important;
     font-weight: 400 !important;
@@ -138,6 +131,17 @@ body{
     fa-icon{
       padding: 0 !important;
       font-size: 1rem !important;
+    }
+  }
+
+  .p-button.filter-icon{
+    border: 1px solid $border-color !important;
+    padding: 16px 15px !important;
+    border-radius: 10px !important;
+
+    &:hover{
+      background-color: $border-color !important;
+      border:1px solid $black !important;
     }
   }
 
@@ -221,6 +225,11 @@ body{
 }
 .mdc-switch__handle::after{
   background-color: #ffffff !important;
+}
+
+:root {
+  --font-family: 'Airbnb Cereal', sans-serif !important;
+
 }
 
 

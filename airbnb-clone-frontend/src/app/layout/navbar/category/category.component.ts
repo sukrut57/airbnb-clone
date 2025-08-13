@@ -2,12 +2,14 @@ import {Component, inject, OnInit} from '@angular/core';
 import {CarouselModule} from 'primeng/carousel';
 import {Category} from './category.model';
 import {CategoryService} from './category.service';
+import {MatSlideToggle} from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-category',
   standalone: true,
   imports: [
-    CarouselModule
+    CarouselModule,
+    MatSlideToggle
   ],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
@@ -59,5 +61,9 @@ export class CategoryComponent implements OnInit{
 
   onChangeCategory(category: Category) {
     this.activateCategory(category);
+  }
+
+  enableFilter() {
+
   }
 }

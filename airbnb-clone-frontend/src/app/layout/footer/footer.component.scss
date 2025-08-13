@@ -1,0 +1,35 @@
+.footer-link{
+  text-decoration: none;
+  color: #000000;
+  &:hover{
+    text-decoration: underline;
+    color: #000000;
+  }
+}
+
+.footer-background{
+  background-color: #f7f7f7;
+  font-size: 14px;
+  color: #222222;
+  cursor: pointer;
+}
+
+.footer-text{
+  color: #000000;
+  font-size: 14px;
+  font-weight: 500;
+}
+.footer-icon{
+  color: #0066FF !important;
+  padding-left: 8px;
+
+  &.globe{
+    color: #000000 !important;
+    margin: 8px;
+  }
+  &.brands{
+    font-size: 18px;
+    color: #000000 !important;
+    margin: 8px;
+  }
+}

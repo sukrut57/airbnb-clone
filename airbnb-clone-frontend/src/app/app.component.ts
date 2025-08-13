@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import {NavbarComponent} from './layout/navbar/navbar.component';
 import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
 import {fontAwesomeIcons} from './shared/font-awesome-icons';
+import {FooterComponent} from './layout/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
