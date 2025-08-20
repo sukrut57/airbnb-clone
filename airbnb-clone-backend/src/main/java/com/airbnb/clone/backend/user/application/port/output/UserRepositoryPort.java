@@ -9,8 +9,8 @@ public interface UserRepositoryPort {
 
     void saveUser(User user);
 
-    Optional<User> findUserByEmail(String email);
+    Optional<UserEntity> findUserByEmail(String email);
 
-    void updateUser(User updateUserDetails, Integer userId);
+    void updateUser(User updateUserDetails, UserEntity userEntity);
 
 }

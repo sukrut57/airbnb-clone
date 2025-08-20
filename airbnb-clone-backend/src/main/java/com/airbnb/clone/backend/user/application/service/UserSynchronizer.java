@@ -1,6 +1,7 @@
 package com.airbnb.clone.backend.user.application.service;
 
 import com.airbnb.clone.backend.shared.exception.UserSynchronizationException;
+import com.airbnb.clone.backend.user.adapter.out.persistence.entities.UserEntity;
 import com.airbnb.clone.backend.user.application.port.input.UserSynchronizerUseCase;
 import com.airbnb.clone.backend.user.application.port.output.UserRepositoryPort;
 import com.airbnb.clone.backend.user.domain.model.Authority;
@@ -29,14 +30,14 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
         //extract user information from the token
         getUserEmail(tokenValue).ifPresentOrElse(userEmail -> {
             //retrieve user from the database
-            Optional<User> user = retrieveUserByEmail(userEmail);
+            Optional<UserEntity> user = retrieveUserByEmail(userEmail);
             if(user.isPresent()){
                 //update the user with the latest information from the token
 
                 //todo: update user with the latest information from the token ! 1
                 try{
                     User updatedUserEntityDetails = retrieveUserDetailsFromToken(tokenValue);
-                    userRepositoryPort.updateUser(updatedUserEntityDetails, user.get().getId());
+                    userRepositoryPort.updateUser(updatedUserEntityDetails, user.get());
                 }
                 catch (Exception e){
                     throw new UserSynchronizationException("Error updating user details", e);
@@ -57,7 +58,7 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
     }
 
 
-    private Optional<User> retrieveUserByEmail(String email){
+    private Optional<UserEntity> retrieveUserByEmail(String email){
         return userRepositoryPort.findUserByEmail(email);
     }
 
@@ -123,9 +124,11 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
         if(clientAccess!=null && clientAccess.containsKey("roles")){
             var roles = (List<String>) clientAccess.get("roles");
             if(roles!=null && !roles.isEmpty()){
-                Authority authority = new Authority();
-                authority.setName("ROLE_" + roles.get(0).replace("-", "_"));
-                authorities.add(authority);
+                for(String role: roles){
+                    Authority authority = new Authority();
+                    authority.setName(role.replace("-", "_"));
+                    authorities.add(authority);
+                }
             }
         } else {
             log.warn("User roles not found in token claims");

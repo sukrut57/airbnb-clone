@@ -6,6 +6,7 @@ import com.airbnb.clone.backend.user.domain.model.Authority;
 import com.airbnb.clone.backend.user.domain.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 
 import java.util.Set;
@@ -22,7 +23,7 @@ public interface UserMapper {
     UserEntity mapUserDomainToUserEntity(User user);
 
     // Map Authority domain -> AuthorityEntity
-    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "name", source = "name")
     AuthorityEntity mapAuthorityDomainToAuthorityEntity(Authority authority);
 
     // Map a set of Authorities (domain) to AuthorityEntities
@@ -32,6 +33,12 @@ public interface UserMapper {
                 .map(this::mapAuthorityDomainToAuthorityEntity)
                 .collect(Collectors.toSet());
     }
+
+    // NEW: update an existing UserEntity with values from domain
+    @Mapping(target = "id", ignore = true)              // keep DB id untouched
+    @Mapping(target = "publicId", ignore = true)        // don’t overwrite PKs/identifiers
+    @Mapping(target = "authorities", ignore = true)     // handled separately
+    void updateUserEntityFromDomain(User updatedUserDetails, @MappingTarget UserEntity entity);
 
     // Map UserEntity -> User domain (reverse)
     @Mapping(target = "publicId", qualifiedByName = "uuidToString")

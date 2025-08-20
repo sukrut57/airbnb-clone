@@ -3,5 +3,11 @@ package com.airbnb.clone.backend.user.adapter.out.persistence.repository;
 import com.airbnb.clone.backend.user.adapter.out.persistence.entities.AuthorityEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AuthorityRepository extends JpaRepository<AuthorityEntity,Integer> {
+import java.util.Optional;
+
+
+public interface AuthorityRepository extends JpaRepository<AuthorityEntity,String> {
+
+    Optional<AuthorityEntity> findByName(String name);
+
 }

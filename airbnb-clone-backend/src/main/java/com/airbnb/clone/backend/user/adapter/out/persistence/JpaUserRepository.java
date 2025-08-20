@@ -2,17 +2,18 @@ package com.airbnb.clone.backend.user.adapter.out.persistence;
 
 import com.airbnb.clone.backend.user.adapter.out.persistence.entities.AuthorityEntity;
 import com.airbnb.clone.backend.user.adapter.out.persistence.entities.UserEntity;
+import com.airbnb.clone.backend.user.adapter.out.persistence.repository.AuthorityRepository;
 import com.airbnb.clone.backend.user.adapter.out.persistence.repository.UserRepository;
 import com.airbnb.clone.backend.user.application.mapper.UserMapper;
 import com.airbnb.clone.backend.user.application.port.output.UserRepositoryPort;
 import com.airbnb.clone.backend.user.domain.model.User;
+import com.sun.jdi.PrimitiveValue;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -21,14 +22,17 @@ public class JpaUserRepository implements UserRepositoryPort {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final AuthorityRepository authorityRepository;
 
-    public JpaUserRepository(UserRepository userRepository, UserMapper userMapper) {
+    public JpaUserRepository(UserRepository userRepository, UserMapper userMapper, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.authorityRepository = authorityRepository;
     }
 
     private final Logger log = LoggerFactory.getLogger(JpaUserRepository.class);
 
+    @Transactional
     @Override
     public void saveUser(User user) {
         UserEntity userEntity = userMapper.mapUserDomainToUserEntity(user);
@@ -41,19 +45,34 @@ public class JpaUserRepository implements UserRepositoryPort {
     }
 
     @Override
-    public Optional<User> findUserByEmail(String email) {
+    public Optional<UserEntity> findUserByEmail(String email) {
         log.info("Finding user by email: {}", email);
-        Optional<UserEntity> entity = userRepository.findByEmail(email);
-        return Optional.empty();
+        return userRepository.findByEmail(email);
     }
 
 
-
+    @Transactional
     @Override
-    public void updateUser(User updatedUserDetails, Integer userId) {
+    public void updateUser(User updatedUserDetails, UserEntity userEntity) {
         log.info("Updating user: {}", updatedUserDetails);
+        // Map updatedUserDetails to userEntity
+        // Copy simple fields into the managed entity
+
+        userMapper.updateUserEntityFromDomain(updatedUserDetails, userEntity);
+
+        // Handle authorities separately (so roles can be created on-the-fly)
+        Set<AuthorityEntity> authorityEntities = updatedUserDetails.getAuthorities().stream()
+                .map(userMapper::mapAuthorityDomainToAuthorityEntity)
+                .map(authority -> authorityRepository.findByName(authority.getName())
+                        .orElseGet(() -> authorityRepository.save(authority)))
+                .collect(Collectors.toSet());
+
+        userEntity.setAuthorities(authorityEntities);
+
+        userRepository.saveAndFlush(userEntity);
 
     }
+
 
 
 }

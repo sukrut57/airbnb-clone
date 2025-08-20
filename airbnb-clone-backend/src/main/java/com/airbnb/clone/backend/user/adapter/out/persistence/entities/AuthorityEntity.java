@@ -8,21 +8,14 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "authority")
-public class AuthorityEntity extends AbstractAuditingEntity<Integer> {
+public class AuthorityEntity {
+
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
     @Size(max = 50)
     @Column(name = "name", nullable = false, unique = true, length = 50)
     private String name;
 
-    @Override
-    public Integer getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
