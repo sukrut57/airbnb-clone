@@ -12,6 +12,7 @@ import com.airbnb.clone.backend.user.domain.model.Authority;
 import com.airbnb.clone.backend.user.domain.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
@@ -22,6 +23,9 @@ import java.util.*;
 
 @Service
 public class UserSynchronizer implements UserSynchronizerUseCase {
+
+    @Value("${keycloak-client.client-id}")
+    private String keycloakClientId;
 
 
     private static final Logger log = LoggerFactory.getLogger(UserSynchronizer.class);
@@ -127,7 +131,7 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
 
         var resourceAccess = new HashMap<>(token.getClaim("resource_access"));
         Set<Authority> authorities = new HashSet<>();
-        var clientAccess = (Map<String, Object>) resourceAccess.get("airbnb_client-app2app");
+        var clientAccess = (Map<String, Object>) resourceAccess.get(keycloakClientId);
         if(clientAccess!=null && clientAccess.containsKey("roles")){
             var roles = (List<String>) clientAccess.get("roles");
             if(roles!=null && !roles.isEmpty()){
