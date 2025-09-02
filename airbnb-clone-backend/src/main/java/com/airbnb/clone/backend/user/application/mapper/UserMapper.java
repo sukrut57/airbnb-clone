@@ -38,6 +38,8 @@ public interface UserMapper {
     @Mapping(target = "id", ignore = true)              // keep DB id untouched
     @Mapping(target = "publicId", ignore = true)        // don’t overwrite PKs/identifiers
     @Mapping(target = "authorities", ignore = true)     // handled separately
+    @Mapping(target = "createdDate", ignore = true)
+    @Mapping(target = "lastModifiedDate", ignore = true)
     void updateUserEntityFromDomain(User updatedUserDetails, @MappingTarget UserEntity entity);
 
     // Map UserEntity -> User domain (reverse)

@@ -4,6 +4,7 @@
     <option name="moduleMapping">
       <map>
         <entry key="airbnb-clone" value="airbnb_clone" />
+        <entry key="t" value="airbnb-clone-frontend" />
       </map>
     </option>
   </component>

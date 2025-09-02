@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/airbnb-clone.iml" filepath="$PROJECT_DIR$/.idea/airbnb-clone.iml" />
       <module fileurl="file://$PROJECT_DIR$/airbnb-clone-backend/airbnb-clone-backend.iml" filepath="$PROJECT_DIR$/airbnb-clone-backend/airbnb-clone-backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/airbnb-clone-frontend/airbnb-clone-frontend.iml" filepath="$PROJECT_DIR$/airbnb-clone-frontend/airbnb-clone-frontend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/t/t.iml" filepath="$PROJECT_DIR$/t/t.iml" />
     </modules>
   </component>
 </project>
