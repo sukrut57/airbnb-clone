@@ -28,6 +28,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "bootstrap": "^5.3.7",
     "dayjs": "^1.11.10",
+    "keycloak-js": "^26.2.0",
     "leaflet": "^1.9.4",
     "leaflet-geosearch": "^3.11.1",
     "primeng": "^17.13.0",

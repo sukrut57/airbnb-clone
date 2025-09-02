@@ -41,7 +41,8 @@
 
       @if(isAuthenticated){
 
-        <app-avatar [imageUrl] ="" avatarSize="avatar-sm"  ></app-avatar>
+        <app-avatar [imageUrl] ="" avatarSize="avatar-sm"></app-avatar>
+        <button class="p-button link" (click)="getUser()">Hi</button>
         <!-- Button to toggle overlay -->
         <button type="button" class="p-button menu-icon" (click)="menuPanel.toggle($event)">
           <fa-icon [icon]="['fas', 'bars']" ></fa-icon>
