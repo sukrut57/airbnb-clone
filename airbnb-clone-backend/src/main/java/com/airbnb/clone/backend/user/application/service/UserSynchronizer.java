@@ -1,14 +1,20 @@
 package com.airbnb.clone.backend.user.application.service;
 
 import com.airbnb.clone.backend.shared.exception.UserSynchronizationException;
+import com.airbnb.clone.backend.user.adapter.in.rest.dto.AuthorityDto;
+import com.airbnb.clone.backend.user.adapter.in.rest.dto.UserDto;
+import com.airbnb.clone.backend.user.adapter.out.persistence.entities.AuthorityEntity;
 import com.airbnb.clone.backend.user.adapter.out.persistence.entities.UserEntity;
+import com.airbnb.clone.backend.user.application.mapper.UserMapper;
 import com.airbnb.clone.backend.user.application.port.input.UserSynchronizerUseCase;
 import com.airbnb.clone.backend.user.application.port.output.UserRepositoryPort;
 import com.airbnb.clone.backend.user.domain.model.Authority;
 import com.airbnb.clone.backend.user.domain.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -21,9 +27,11 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
     private static final Logger log = LoggerFactory.getLogger(UserSynchronizer.class);
 
     private final UserRepositoryPort userRepositoryPort;
+    private final UserMapper userMapper;
 
-    public UserSynchronizer(UserRepositoryPort userRepositoryPort) {
+    public UserSynchronizer(UserRepositoryPort userRepositoryPort, UserMapper userMapper) {
         this.userRepositoryPort = userRepositoryPort;
+        this.userMapper = userMapper;
     }
 
     public void synchronizeWithIdp(Jwt tokenValue) {
@@ -34,7 +42,6 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
             if(user.isPresent()){
                 //update the user with the latest information from the token
 
-                //todo: update user with the latest information from the token ! 1
                 try{
                     User updatedUserEntityDetails = retrieveUserDetailsFromToken(tokenValue);
                     userRepositoryPort.updateUser(updatedUserEntityDetails, user.get());
@@ -143,4 +150,24 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
         log.info("User Details: Email: {}, First Name: {}, Last Name: {}, Public ID: {}",
                 user.getEmail(), user.getFirstName(), user.getLastName(), user.getPublicId());
     }
+
+
+    @Override
+    public UserDto getUserDetails(Authentication authentication){
+        if(!(authentication instanceof JwtAuthenticationToken)){
+            throw new UserSynchronizationException("Authentication is not a JWT token");
+        }
+        JwtAuthenticationToken jwtAuthToken = (JwtAuthenticationToken) authentication;
+        String email = jwtAuthToken.getToken().getClaimAsString("email");
+        if(email==null || email.isEmpty()){
+            throw new UserSynchronizationException("User email not found in token");
+        }
+        Optional<UserEntity> user = userRepositoryPort.findUserByEmailWithAuthorities(email);
+        if(user.isEmpty()){
+            throw new UserSynchronizationException("User not found in the database");
+        }
+        UserDto userDto = userMapper.mapUserEntityToUserDto(user.get());
+        return userDto;
+    }
+
 }

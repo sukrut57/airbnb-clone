@@ -11,6 +11,8 @@ public interface UserRepositoryPort {
 
     Optional<UserEntity> findUserByEmail(String email);
 
+    Optional<UserEntity> findUserByEmailWithAuthorities(String email);
+
     void updateUser(User updateUserDetails, UserEntity userEntity);
 
 }

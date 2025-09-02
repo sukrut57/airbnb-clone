@@ -50,6 +50,12 @@ public class JpaUserRepository implements UserRepositoryPort {
         return userRepository.findByEmail(email);
     }
 
+    @Override
+    public Optional<UserEntity> findUserByEmailWithAuthorities(String email) {
+        log.info("retrieving user details: {}", email);
+        return userRepository.findByEmailWithAuthorities(email);
+    }
+
 
     @Transactional
     @Override

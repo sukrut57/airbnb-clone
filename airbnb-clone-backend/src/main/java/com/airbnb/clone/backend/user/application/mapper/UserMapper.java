@@ -1,5 +1,7 @@
 package com.airbnb.clone.backend.user.application.mapper;
 
+import com.airbnb.clone.backend.user.adapter.in.rest.dto.AuthorityDto;
+import com.airbnb.clone.backend.user.adapter.in.rest.dto.UserDto;
 import com.airbnb.clone.backend.user.adapter.out.persistence.entities.AuthorityEntity;
 import com.airbnb.clone.backend.user.adapter.out.persistence.entities.UserEntity;
 import com.airbnb.clone.backend.user.domain.model.Authority;
@@ -18,9 +20,17 @@ public interface UserMapper {
 
     // Map User domain -> UserEntity
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "publicId", qualifiedByName = "stringToUUID")
+    @Mapping(target = "publicId", source = "publicId", qualifiedByName = "stringToUUID")
     @Mapping(target = "authorities", source = "authorities")
     UserEntity mapUserDomainToUserEntity(User user);
+
+    @Mapping(target = "publicId", qualifiedByName = "uuidToString")
+    @Mapping(target = "authorities", source = "authorities")
+    UserDto mapUserEntityToUserDto(UserEntity user);
+
+    // Map AuthorityEntity -> AuthorityDto
+    @Mapping(target = "name", source = "name")
+    AuthorityDto mapAuthorityEntityToAuthorityDto(AuthorityEntity authorityEntity);
 
     // Map Authority domain -> AuthorityEntity
     @Mapping(target = "name", source = "name")
