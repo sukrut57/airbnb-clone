@@ -206,6 +206,10 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
+   .p-toast .p-toast-message .p-toast-message-icon {
+    margin-right: 1rem !important; /* tweak value as needed */
+    font-size: 1rem !important;    /* optional: make icon a bit larger */
+  }
 
 }
 

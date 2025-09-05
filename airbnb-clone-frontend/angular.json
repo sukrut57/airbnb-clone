@@ -69,7 +69,8 @@
               "buildTarget": "airbnb-clone-frontend:build:production"
             },
             "development": {
-              "buildTarget": "airbnb-clone-frontend:build:development"
+              "buildTarget": "airbnb-clone-frontend:build:development",
+              "proxyConfig": "local-proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

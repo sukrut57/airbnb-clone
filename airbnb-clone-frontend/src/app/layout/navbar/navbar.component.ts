@@ -7,23 +7,9 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {AvatarComponent} from './avatar/avatar.component';
 import {CategoryComponent} from './category/category.component';
 import {KeycloakService} from '../../core/auth/keycloak.service';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {UserService} from '../../core/user/user.service';
+import {ToastService} from '../../core/toast/toast.service';
 
-
-export interface User {
-  email: string
-  firstName: string
-  lastName: string
-  profilePictureUrl: any
-  accountEnabled: boolean
-  publicId: string
-  authorities: Authority[]
-}
-
-export interface Authority {
-  name: string
-}
 
 @Component({
   selector: 'app-navbar',
@@ -45,29 +31,40 @@ export class NavbarComponent implements OnInit{
 
   keycloakService = inject(KeycloakService);
 
+  username = '';
+
   isAuthenticated = this.keycloakService.isAuthenticated();
 
+  userService = inject(UserService);
+  toastService = inject(ToastService);
+
   ngOnInit() {
+    if(!this.isAuthenticated){
+      this.toastService.sendMessage({severity: 'info', summary: 'Welcome to Airbnb'});
+    }
+    else{
+      this.displayLoginMessage()
+    }
   }
 
 
   login() {
     this.keycloakService.login();
-    this.isAuthenticated = this.keycloakService.isAuthenticated();
+
   }
 
   logout() {
     this.keycloakService.logout();
-    this.isAuthenticated = !this.keycloakService.isAuthenticated();  }
-
+}
   routeToMyGitHub() {
     window.open('https://github.com/sukrut57/airbnb-clone');
   }
 
   getUser(){
-    this.getUserDetails().subscribe({
+    this.userService.getUserDetails().subscribe({
       next: (user) => {
-        console.log(user);
+        this.username = this.capitalizeFirstLetter(user.firstName);
+        this.toastService.sendMessage({severity: 'success', summary: 'Welcome back, ' + this.username});
       },
       error: (err) => {
         console.error('Error fetching user details:', err);
@@ -75,15 +72,11 @@ export class NavbarComponent implements OnInit{
     });
   }
 
-  httpClient = inject(HttpClient);
+  private displayLoginMessage() {
+    this.getUser();
+  }
 
-  getUserDetails():Observable<User>{
-    return this.httpClient.get<User>('http://localhost:8080/api/v1/user');
-}
-
-
-
-
-
-
+  private capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 }

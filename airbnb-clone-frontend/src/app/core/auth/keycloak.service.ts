@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import Keycloak from 'keycloak-js';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,7 @@ export class KeycloakService {
   logout():void{
     this.keycloak.logout({redirectUri: window.location.origin});
   }
+
 
   isAuthenticated(): boolean {
     return this.keycloak.authenticated || false;
