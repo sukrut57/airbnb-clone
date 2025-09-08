@@ -24,7 +24,7 @@
       <button class="p-button link">Airbnb your home</button>
       <fa-icon [icon]="['fab', 'github']" class="user-icon" (click)="routeToMyGitHub()"></fa-icon>
 
-      @if(!isAuthenticated){
+      @if(isAuthenticated !== "LOGGED_IN"){
         <!-- Button to toggle overlay -->
         <button type="button" class="p-button menu-icon" (click)="menuPanel.toggle($event)">
           <fa-icon [icon]="['fas', 'bars']" ></fa-icon>
@@ -39,9 +39,11 @@
 
       }
 
-      @if(isAuthenticated){
+      @else{
+        <button class="border-0 bg-transparent" (click)="routeToMyProfile()">
+          <app-avatar [imageUrl] ="" avatarSize="avatar-sm"></app-avatar>
+        </button>
 
-        <app-avatar [imageUrl] ="" avatarSize="avatar-sm"></app-avatar>
         <!-- Button to toggle overlay -->
         <button type="button" class="p-button menu-icon" (click)="menuPanel.toggle($event)">
           <fa-icon [icon]="['fas', 'bars']" ></fa-icon>

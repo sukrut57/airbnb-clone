@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import Keycloak from 'keycloak-js';
 import {BehaviorSubject} from 'rxjs';
+import {AuthenticationStates} from './authentication.states';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ export class KeycloakService {
 
   private _keycloak: Keycloak | undefined;
 
-  constructor() { }
+  private isAuthenticatedSub$ = new BehaviorSubject<AuthenticationStates>(AuthenticationStates.FirstVisit);
+  isAuthenticatedObs = this.isAuthenticatedSub$.asObservable();
 
   get keycloak(){
     if(!this._keycloak){
@@ -31,7 +33,29 @@ export class KeycloakService {
       silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html',
       checkLoginIframe: false   // auto refresh login state every few seconds
     }).then(authenticated => {
-      console.log('Keycloak init success, authenticated:', authenticated);
+      if(authenticated){
+        this.isAuthenticatedSub$.next(AuthenticationStates.LoggedIn);
+        sessionStorage.setItem('lastAction',AuthenticationStates.LoggedIn);
+      }
+      else{
+        const lastAction = sessionStorage.getItem('lastAction');
+
+        if(!lastAction){
+          //new user session
+          this.isAuthenticatedSub$.next(AuthenticationStates.FirstVisit);
+          sessionStorage.setItem('lastAction', AuthenticationStates.FirstVisit);
+
+        }
+        else if(lastAction === AuthenticationStates.LoggedIn){
+          //user was logged in but now logged out
+          this.isAuthenticatedSub$.next(AuthenticationStates.LoggedOut);
+          sessionStorage.removeItem('lastAction'); // 🔑 don’t persist logout
+        }
+        else{
+          // already logged out or first visit handled → do nothing
+          this.isAuthenticatedSub$.next(lastAction as AuthenticationStates);
+        }
+      }
       return authenticated;
     }).catch(err => {
       console.error('Keycloak init error:', err);
@@ -40,16 +64,21 @@ export class KeycloakService {
   }
 
   login():void{
-    this.keycloak.login({ redirectUri: window.location.origin });
+    this.keycloak.login({ redirectUri: window.location.origin }).catch(err => {
+      console.error('Keycloak login error:', err);
+      //revert to new user if login failed
+      this.isAuthenticatedSub$.next(AuthenticationStates.FirstVisit);
+      sessionStorage.setItem('lastAction',AuthenticationStates.FirstVisit);
+    });
   }
 
-  logout():void{
-    this.keycloak.logout({redirectUri: window.location.origin});
-  }
-
-
-  isAuthenticated(): boolean {
-    return this.keycloak.authenticated || false;
+  logout(): void {
+    this.keycloak.logout({ redirectUri: window.location.origin }).catch(err => {
+      console.error("Keycloak logout error: ", err);
+      //revert to login if logout failed
+      this.isAuthenticatedSub$.next(AuthenticationStates.LoggedIn);
+      sessionStorage.setItem('lastAction',AuthenticationStates.LoggedIn);
+    });
   }
 
   getToken(): string | undefined {

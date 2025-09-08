@@ -9,6 +9,8 @@ import {CategoryComponent} from './category/category.component';
 import {KeycloakService} from '../../core/auth/keycloak.service';
 import {UserService} from '../../core/user/user.service';
 import {ToastService} from '../../core/toast/toast.service';
+import {AuthenticationStates} from '../../core/auth/authentication.states';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -33,20 +35,17 @@ export class NavbarComponent implements OnInit{
 
   username = '';
 
-  isAuthenticated = this.keycloakService.isAuthenticated();
+  isAuthenticated: AuthenticationStates = AuthenticationStates.FirstVisit;
+
 
   userService = inject(UserService);
   toastService = inject(ToastService);
 
-  ngOnInit() {
-    if(!this.isAuthenticated){
-      this.toastService.sendMessage({severity: 'info', summary: 'Welcome to Airbnb'});
-    }
-    else{
-      this.displayLoginMessage()
-    }
-  }
+  router = inject(Router);
 
+  ngOnInit() {
+   this.listenToAuthenticationStates();
+  }
 
   login() {
     this.keycloakService.login();
@@ -58,6 +57,46 @@ export class NavbarComponent implements OnInit{
 }
   routeToMyGitHub() {
     window.open('https://github.com/sukrut57/airbnb-clone');
+  }
+
+  private listenToAuthenticationStates() {
+    this.keycloakService.isAuthenticatedObs.subscribe({
+      next: (authState) => {
+        console.log('Auth state:', authState);
+
+        switch (authState) {
+          case AuthenticationStates.LoggedIn:
+            this.isAuthenticated = AuthenticationStates.LoggedIn;
+            this.displayLoginMessage();
+            break;
+
+          case AuthenticationStates.LoggedOut:
+              this.isAuthenticated = AuthenticationStates.LoggedOut;
+              this.username = '';
+              this.toastService.sendMessage({
+                severity: 'info',
+                summary: 'You are logged out successfully'
+              });
+
+            break;
+
+          case AuthenticationStates.FirstVisit:
+              this.isAuthenticated = AuthenticationStates.FirstVisit;
+              this.username = '';
+              this.toastService.sendMessage({
+                severity: 'info',
+                summary: 'Welcome to Airbnb Clone'
+              });
+            break;
+        }
+      },
+      error: () => {
+        this.toastService.sendMessage({
+          severity: 'error',
+          summary: 'Unable to Authenticate. Please try again later.'
+        });
+      }
+    });
   }
 
   getUser(){
@@ -78,5 +117,9 @@ export class NavbarComponent implements OnInit{
 
   private capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  routeToMyProfile() {
+    this.router.navigate(['/profile']);
   }
 }
