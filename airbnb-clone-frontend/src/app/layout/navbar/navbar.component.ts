@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, input, OnInit} from '@angular/core';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
@@ -30,7 +30,7 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit{
 
-
+  profileView = input<boolean>(false);
   keycloakService = inject(KeycloakService);
 
   username = '';
@@ -120,6 +120,6 @@ export class NavbarComponent implements OnInit{
   }
 
   routeToMyProfile() {
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/profile']).then(r => console.log('Navigated to profile page'));
   }
 }

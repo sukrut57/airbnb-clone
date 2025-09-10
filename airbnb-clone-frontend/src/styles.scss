@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../public/scss/airbnb-variables";
-@import "../public/scss/airbnb-fonts";
 @import "../public/scss/lara-light/blue/theme";
 
 @import "primeng/resources/primeng";
 @import "bootstrap/scss/bootstrap";
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../public/scss/airbnb-variables";
+@import "../public/scss/airbnb-fonts";
 
 
 /* 1. Use a more-intuitive box-sizing model */
@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @layer reset {
   p-toolbar{
-    color : $primaryColor;
+    color : $primaryColor !important;
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -235,5 +235,30 @@ h1, h2, h3, h4, h5, h6 {
   --font-family: 'Airbnb Cereal', sans-serif !important;
 
 }
+/* For Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 8px;     /* width of vertical scrollbar */
+  height: 8px;    /* height of horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #2C2C2C;   /* dark gray track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9f9f9f; /* light gray thumb */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2C2C2C;   /* darker thumb on hover */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: auto;                 /* auto | thin | none */
+  scrollbar-color: #9f9f9f #2C2C2C;      /* thumb | track */
+}
+
 
 

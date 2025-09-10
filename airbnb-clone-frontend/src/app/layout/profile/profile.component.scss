@@ -1,0 +1,92 @@
+.profile-section{
+  font-family: 'Airbnb Cereal', sans-serif;
+}
+
+.profile-link {
+  color: #000000 !important;
+  border-radius: 14px !important;
+  padding: 14px 20px !important;
+  width: 65%;
+  font-weight: 500;
+  font-size: 1rem;
+
+  &:hover{
+    background-color: #f2f2f2 !important;
+  }
+}
+
+.active{
+  background-color: #f2f2f2 !important;
+}
+
+//.avatar-group app-avatar {
+//  margin-left: -10px; /* overlap each avatar */
+//  border: 2px solid #fff; /* add border so they don’t visually merge */
+//  border-radius: 50%; /* keep them round */
+//  width:40px;
+//
+//}
+//
+//.avatar-group app-avatar:first-child {
+//  margin-left: 0;
+//  position: relative;
+//  top: -10px;
+//}
+//
+//.avatar-group app-avatar:nth-child(2) {
+//  margin-left: 0;
+//  position: relative;
+//  bottom: -25px;
+//  left: -35px;
+//}
+//
+//.avatar-group app-avatar:nth-child(3) {
+//  margin-left: 0;
+//  position: relative;
+//  left: -50px;
+//}
+//
+//.label{
+//  margin-left: -50px;
+//}
+
+
+.avatar-group {
+  position: relative;
+  width: 50px;   /* enough space for the stack */
+  height: 50px;  /* adjust to fit 3 avatars */
+}
+
+.avatar-group app-avatar {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+/* First avatar: top left */
+.avatar-group app-avatar:nth-child(1) {
+  top: 0;
+  left: -3px;
+  z-index: 3;
+}
+
+/* Second avatar: top right */
+.avatar-group app-avatar:nth-child(2) {
+  top: 8px;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  z-index: 2;
+}
+
+/* Third avatar: bottom center */
+.avatar-group app-avatar:nth-child(3) {
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  z-index: 1;
+}

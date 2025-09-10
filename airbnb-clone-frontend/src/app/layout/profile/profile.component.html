@@ -1,0 +1,60 @@
+<div class="container-fluid p-0 overflow-x-hidden overflow-y-visible" style="height: 100vh !important;">
+
+  <div class="sticky-top overflow-visible" style="z-index: 100 !important;">
+    <app-navbar [profileView] = true></app-navbar>
+  </div>
+
+  <div class="row h-100">
+
+    <div class="col-5 border-end">
+      <div class="profile-section d-flex flex-column p-5">
+        <div class="fs-2 fw-bold mb-3">Profile</div>
+        <a routerLink="/profile" routerLinkActive="active" class="text-decoration-none profile-link">
+          <div class="d-flex align-items-center">
+            <app-avatar [imageUrl] ="" avatarSize="avatar-sm"></app-avatar>
+            <span class="ms-4">About me</span>
+          </div>
+
+        </a>
+        <a routerLink="/profile/trips" routerLinkActive="active" class="text-decoration-none profile-link">
+          <div class="d-flex align-items-center">
+            <app-avatar [imageUrl] ="'assets/category-icons/past_trips.png'" avatarSize="avatar-sm"></app-avatar>
+            <span class="ms-4">Past trips</span>
+          </div>
+        </a>
+<!--        <a routerLink="/profile/connections" routerLinkActive="active" class="text-decoration-none profile-link">-->
+<!--            <div class="d-flex align-items-center gap-3">-->
+<!--              <div class="avatar-group d-flex">-->
+<!--                <app-avatar [imageUrl] ="'assets/category-icons/connection1.png'" avatarSize="avatar-sm"></app-avatar>-->
+<!--                <app-avatar [imageUrl] ="'assets/category-icons/connection2.png'" avatarSize="avatar-sm"></app-avatar>-->
+<!--                <app-avatar [imageUrl] ="'assets/category-icons/connection3.png'" avatarSize="avatar-sm"></app-avatar>-->
+<!--              </div>-->
+
+<!--              <div class="label">Connections</div>-->
+<!--            </div>-->
+<!--          </a>-->
+        <a routerLink="/profile/connections" routerLinkActive="active" class="text-decoration-none profile-link">
+          <div class="d-flex align-items-center">
+            <div class="avatar-group">
+              <app-avatar [imageUrl]="'assets/category-icons/connection1.png'" avatarSize="avatar-sm"></app-avatar>
+              <app-avatar [imageUrl]="'assets/category-icons/connection2.png'" avatarSize="avatar-sm"></app-avatar>
+              <app-avatar [imageUrl]="'assets/category-icons/connection3.png'" avatarSize="avatar-sm"></app-avatar>
+            </div>
+            <div class="label ms-3">Connections</div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="col-7">
+      <h1>Profile</h1>
+    </div>
+  </div>
+
+  <div class="fixed-bottom">
+    <app-footer></app-footer>
+  </div>
+</div>
+

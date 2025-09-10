@@ -14,6 +14,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 
+import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -43,6 +44,10 @@ public class KeycloakJwtAuthenticationConvertor implements Converter<Jwt, Abstra
         var clientAccess = (Map<String, Object>) resourceAccess.get(clientId);
         var azp = source.getClaimAsString("azp");
 
+        Instant tokenExpiration = source.getClaim("exp");
+        if(!validateJwtToken(tokenExpiration)){
+            throw new OAuth2AuthenticationException(new OAuth2Error("invalid_token", "Token has expired", null));
+        }
         if(azp != null && !azp.equals(clientId)){
             log.error("azp does not match expected client");
             throw new OAuth2AuthenticationException(new OAuth2Error("invalid_token", "Token azp does not match expected client", null));
@@ -54,5 +59,11 @@ public class KeycloakJwtAuthenticationConvertor implements Converter<Jwt, Abstra
 
         return roles.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.replace("-","_")))
                 .collect(Collectors.toSet());
+    }
+
+    private boolean validateJwtToken(Instant tokenExpiration){
+        Instant now = Instant.now();
+        return tokenExpiration.isAfter(now);
+
     }
 }
