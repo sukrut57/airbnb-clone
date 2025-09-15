@@ -11,6 +11,8 @@ import {User} from '../../core/user/user.model';
 import {UserService} from '../../core/user/user.service';
 import {ToastService} from '../../core/toast/toast.service';
 import {FooterComponent} from '../footer/footer.component';
+import {CardModule} from 'primeng/card';
+import {UpperCasePipe} from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -26,7 +28,9 @@ import {FooterComponent} from '../footer/footer.component';
     ToolbarModule,
     NavbarComponent,
     FooterComponent,
-    RouterOutlet
+    RouterOutlet,
+    CardModule,
+    UpperCasePipe
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
@@ -55,7 +59,5 @@ export class ProfileComponent implements OnInit{
     });
   }
 
-  isActive(val: string) {
-    
-  }
+
 }

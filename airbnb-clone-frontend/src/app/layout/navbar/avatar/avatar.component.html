@@ -3,7 +3,7 @@
 }
 @else {
   <div [ngClass]="avatarSize()" class="d-flex align-items-center justify-content-center image-container" style="cursor: pointer;">
-    <fa-icon [icon]="['fas', 's']" class="user-icon"></fa-icon>
+    <fa-icon [icon]="['fas', 's']" [ngStyle]="{'font-size' : avatarSize() === 'avatar-xl' ? '2.5rem': '1rem' }"></fa-icon>
   </div>
 
 }

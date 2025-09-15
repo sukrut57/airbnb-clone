@@ -4,9 +4,22 @@
   background-color: transparent !important;
 }
 
+.avatar-xl{
+  width: 87.25px;
+  height: 87.25px;
+  background-color: transparent !important;
+}
+
+
 .image-container{
   border: 1px solid #222222;
   border-radius: 50%;
   background-color: #222222 !important;
   color: #ffffff;
+}
+
+.user-icon{
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
 }

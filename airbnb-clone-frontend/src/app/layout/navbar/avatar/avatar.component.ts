@@ -1,5 +1,5 @@
 import {Component, effect, input} from '@angular/core';
-import {NgClass} from '@angular/common';
+import {NgClass, NgStyle} from '@angular/common';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 
 @Component({
@@ -7,7 +7,8 @@ import {FaIconComponent} from '@fortawesome/angular-fontawesome';
   standalone: true,
   imports: [
     NgClass,
-    FaIconComponent
+    FaIconComponent,
+    NgStyle
   ],
   templateUrl: './avatar.component.html',
   styleUrl: './avatar.component.scss'

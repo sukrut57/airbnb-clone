@@ -19,37 +19,6 @@
   background-color: #f2f2f2 !important;
 }
 
-//.avatar-group app-avatar {
-//  margin-left: -10px; /* overlap each avatar */
-//  border: 2px solid #fff; /* add border so they don’t visually merge */
-//  border-radius: 50%; /* keep them round */
-//  width:40px;
-//
-//}
-//
-//.avatar-group app-avatar:first-child {
-//  margin-left: 0;
-//  position: relative;
-//  top: -10px;
-//}
-//
-//.avatar-group app-avatar:nth-child(2) {
-//  margin-left: 0;
-//  position: relative;
-//  bottom: -25px;
-//  left: -35px;
-//}
-//
-//.avatar-group app-avatar:nth-child(3) {
-//  margin-left: 0;
-//  position: relative;
-//  left: -50px;
-//}
-//
-//.label{
-//  margin-left: -50px;
-//}
-
 
 .avatar-group {
   position: relative;
@@ -82,11 +51,45 @@
 }
 
 /* Third avatar: bottom center */
-.avatar-group app-avatar:nth-child(3) {
+.avatar-group app-avatar:nth-child(3)
+{
   bottom: -12px;
   left: 50%;
   transform: translateX(-50%);
   width: 32px;
   height: 32px;
   z-index: 1;
+}
+
+.edit-button{
+  width: 60px;
+  font-size: 0.875rem;
+}
+
+.button{
+  color: #ffffff;
+  font-weight: 500;
+  background-color: #f8315a;
+
+}
+
+.divider{
+  width: 100%;
+  height: 1px;
+  background-color: #D1D5DC;
+  margin: 20px 10px;
+}
+
+.review-button {
+  :hover {
+    background-color: #f2f2f2 !important;
+
+  }
+  button {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    background-color: transparent;
+    border: none;
+
+  }
 }
