@@ -1,10 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {AvatarComponent} from '../navbar/avatar/avatar.component';
-import {ButtonDirective} from 'primeng/button';
-import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
-import {PrimeTemplate} from 'primeng/api';
-import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {RouterLink, RouterLinkActive} from '@angular/router';
 import {ToolbarModule} from 'primeng/toolbar';
 import {NavbarComponent} from '../navbar/navbar.component';
 import {User} from '../../core/user/user.model';
@@ -13,22 +10,19 @@ import {ToastService} from '../../core/toast/toast.service';
 import {FooterComponent} from '../footer/footer.component';
 import {CardModule} from 'primeng/card';
 import {UpperCasePipe} from '@angular/common';
+import {ProfileService} from './profile.service';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [
     AvatarComponent,
-    ButtonDirective,
-    FaIconComponent,
     OverlayPanelModule,
-    PrimeTemplate,
     RouterLink,
     RouterLinkActive,
     ToolbarModule,
     NavbarComponent,
     FooterComponent,
-    RouterOutlet,
     CardModule,
     UpperCasePipe
   ],
@@ -39,12 +33,16 @@ export class ProfileComponent implements OnInit{
 
   userDetails : User | undefined;
 
+  profileStatus: boolean | undefined;
+
   userService = inject(UserService);
   toastService = inject(ToastService);
+  profileService = inject(ProfileService);
 
 
   ngOnInit(): void {
     this.getUserDetails();
+    this.listenToProfileEvent();
   }
 
   private getUserDetails(){
@@ -59,5 +57,17 @@ export class ProfileComponent implements OnInit{
     });
   }
 
+  listenToProfileEvent(){
+    this.profileService.profileViewObs.subscribe({
+      next: (profileView) => {
+        console.log('Profile view:', profileView);
+
+        this.profileStatus = profileView
+      },
+      error: (err) => {
+        console.error('Error fetching user details:', err);
+      }
+    })
+  }
 
 }

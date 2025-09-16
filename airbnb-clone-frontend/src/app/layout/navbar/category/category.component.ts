@@ -33,17 +33,12 @@ export class CategoryComponent implements OnInit{
     this.responsiveOptions = [
       {
         breakpoint: '1270px',
-        numVisible: 6,
-        numScroll: 1
-      },
-      {
-        breakpoint: '1199px',
         numVisible: 10,
         numScroll: 1
       },
       {
         breakpoint: '500px',
-        numVisible: 2,
+        numVisible: 5,
         numScroll: 1
       }
     ];

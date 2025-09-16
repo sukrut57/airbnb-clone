@@ -1,87 +1,90 @@
-<p-toolbar>
-  <ng-template pTemplate="start">
 
-    <a class="text-decoration-none" style="color:#F24B5B !important;" routerLink="/home">
-      <div class="d-flex nav-start">
-        <fa-icon [icon]="['fab', 'airbnb']" size="2xl" class="pe-1" style="cursor: pointer"></fa-icon>
-        <div class="fs-4 fw-bold" style="cursor: pointer">airbnb</div>
-      </div>
-    </a>
-  </ng-template>
+@if(showLargeMenu || profileView()){
+  <p-toolbar>
+    <ng-template pTemplate="start">
 
-  @if(!profileView()){
-    <ng-template pTemplate="center">
-      <div class="d-flex pe-3 border rounded-5 bg-white cursor-pointer shadow-sm nav-center flex-shrink-0">
-        <button pButton type="button" class="rounded-start-5 border-0">Anywhere</button>
-        <div class="separator"></div>
-        <button pButton type="button"  class="border-end-0 border-0">Anytime</button>
-        <div class="separator"></div>
-        <button pButton type="button" class="rounded-end-5 border-0 fw-bold guests">Add guests </button>
-        <div class="d-flex align-items-center justify-content-center">
-          <fa-icon [icon]="['fas', 'search']" class="search-icon"></fa-icon>
+      <a class="text-decoration-none" style="color:#F24B5B !important;" routerLink="/home" (click)="routeToHome()">
+        <div class="d-flex nav-start">
+          <fa-icon [icon]="['fab', 'airbnb']" size="2xl" class="pe-1" style="cursor: pointer"></fa-icon>
+          <div class="fs-4 fw-bold" style="cursor: pointer">airbnb</div>
         </div>
-      </div>
+      </a>
     </ng-template>
 
-  }
-
-  <ng-template pTemplate="end">
-
-    <div class="d-flex align-items-center justify-content-between gap-3 nav-end">
-      <button class="p-button link">Airbnb your home</button>
-      <fa-icon [icon]="['fab', 'github']" class="user-icon" (click)="routeToMyGitHub()"></fa-icon>
-
-      @if(isAuthenticated !== "LOGGED_IN"){
-        <!-- Button to toggle overlay -->
-        <button type="button" class="p-button menu-icon" (click)="menuPanel.toggle($event)">
-          <fa-icon [icon]="['fas', 'bars']" ></fa-icon>
-        </button>
-
-        <!-- Overlay Panel with custom menu items -->
-        <p-overlayPanel #menuPanel [dismissable]="true"  styleClass="custom-menu-panel">
-
-          <div class="custom-menu-item fw-bold" tabindex="0" role="menuitem" (click)="login()" (keydown.enter)="login()">Sign up</div>
-          <div class="custom-menu-item" tabindex="0" role="menuitem" (click)="login()" (keydown.enter)="login()">Log in</div>
-        </p-overlayPanel>
-
-      }
-
-      @else{
-        <button class="border-0 bg-transparent" (click)="routeToMyProfile()">
-          <app-avatar [imageUrl] ="" avatarSize="avatar-sm"></app-avatar>
-        </button>
-
-        <!-- Button to toggle overlay -->
-        <button type="button" class="p-button menu-icon" (click)="menuPanel.toggle($event)">
-          <fa-icon [icon]="['fas', 'bars']" ></fa-icon>
-        </button>
-
-        <!-- Overlay Panel with custom menu items -->
-        <p-overlayPanel #menuPanel [dismissable]="true" styleClass="custom-menu-panel">
-
-          <div class="d-flex flex-column">
-            <a class="custom-menu-item" tabindex="0" role="menuitem" routerLink="landlord/properties" routerLinkActive="active-link">
-              My properties
-            </a>
-            <a class="custom-menu-item" tabindex="0" role="menuitem" routerLink="booking" routerLinkActive="active-link">
-              My bookings
-            </a>
-            <a class="custom-menu-item" tabindex="0" role="menuitem" routerLink="landlord/reservation" routerLinkActive="active-link">
-              My reservations
-            </a>
-            <div class="custom-menu-item" tabindex="0" role="menuitem" (click)="logout()" (keydown.enter)="logout()">
-              Logout
-            </div>
+    @if(!profileView()){
+      <ng-template pTemplate="center">
+        <div class="d-flex pe-3 border rounded-5 bg-white cursor-pointer shadow-sm nav-center flex-shrink-0">
+          <button pButton type="button" class="rounded-start-5 border-0">Anywhere</button>
+          <div class="separator"></div>
+          <button pButton type="button"  class="border-end-0 border-0">Anytime</button>
+          <div class="separator"></div>
+          <button pButton type="button" class="rounded-end-5 border-0 fw-bold guests">Add guests </button>
+          <div class="d-flex align-items-center justify-content-center">
+            <fa-icon [icon]="['fas', 'search']" class="search-icon"></fa-icon>
           </div>
-        </p-overlayPanel>
-      }
+        </div>
+      </ng-template>
 
-    </div>
-  </ng-template>
-</p-toolbar>
+    }
+
+    <ng-template pTemplate="end">
+
+      <div class="d-flex align-items-center justify-content-between gap-3 nav-end">
+        <button class="p-button link">Airbnb your home</button>
+        <fa-icon [icon]="['fab', 'github']" class="user-icon" (click)="routeToMyGitHub()"></fa-icon>
+
+        @if(isAuthenticated !== "LOGGED_IN"){
+          <!-- Button to toggle overlay -->
+          <button type="button" class="p-button menu-icon" (click)="menuPanel.toggle($event)">
+            <fa-icon [icon]="['fas', 'bars']" ></fa-icon>
+          </button>
+
+          <!-- Overlay Panel with custom menu items -->
+          <p-overlayPanel #menuPanel [dismissable]="true"  styleClass="custom-menu-panel">
+
+            <div class="custom-menu-item fw-bold" tabindex="0" role="menuitem" (click)="login()" (keydown.enter)="login()">Sign up</div>
+            <div class="custom-menu-item" tabindex="0" role="menuitem" (click)="login()" (keydown.enter)="login()">Log in</div>
+          </p-overlayPanel>
+
+        }
+
+        @else{
+          <button class="border-0 bg-transparent" (click)="routeToMyProfile()">
+            <app-avatar [imageUrl] ="" avatarSize="avatar-sm"></app-avatar>
+          </button>
+
+          <!-- Button to toggle overlay -->
+          <button type="button" class="p-button menu-icon" (click)="menuPanel.toggle($event)">
+            <fa-icon [icon]="['fas', 'bars']" ></fa-icon>
+          </button>
+
+          <!-- Overlay Panel with custom menu items -->
+          <p-overlayPanel #menuPanel [dismissable]="true" styleClass="custom-menu-panel">
+
+            <div class="d-flex flex-column">
+              <a class="custom-menu-item" tabindex="0" role="menuitem" routerLink="landlord/properties" routerLinkActive="active-link">
+                My properties
+              </a>
+              <a class="custom-menu-item" tabindex="0" role="menuitem" routerLink="booking" routerLinkActive="active-link">
+                My bookings
+              </a>
+              <a class="custom-menu-item" tabindex="0" role="menuitem" routerLink="landlord/reservation" routerLinkActive="active-link">
+                My reservations
+              </a>
+              <div class="custom-menu-item" tabindex="0" role="menuitem" (click)="logout()" (keydown.enter)="logout()">
+                Logout
+              </div>
+            </div>
+          </p-overlayPanel>
+        }
+
+      </div>
+    </ng-template>
+  </p-toolbar>
+
+}
 
 @if(!profileView()){
-
   <app-category></app-category>
 }
 

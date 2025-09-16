@@ -1,4 +1,4 @@
-import {Component, inject, input, OnInit} from '@angular/core';
+import {Component, HostListener, inject, input, OnInit} from '@angular/core';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
@@ -11,6 +11,7 @@ import {UserService} from '../../core/user/user.service';
 import {ToastService} from '../../core/toast/toast.service';
 import {AuthenticationStates} from '../../core/auth/authentication.states';
 import {Router} from '@angular/router';
+import {ProfileService} from '../profile/profile.service';
 
 
 @Component({
@@ -31,6 +32,7 @@ import {Router} from '@angular/router';
 export class NavbarComponent implements OnInit{
 
   profileView = input<boolean>(false);
+
   keycloakService = inject(KeycloakService);
 
   username = '';
@@ -40,6 +42,7 @@ export class NavbarComponent implements OnInit{
 
   userService = inject(UserService);
   toastService = inject(ToastService);
+  profileService = inject(ProfileService);
 
   router = inject(Router);
 
@@ -120,6 +123,26 @@ export class NavbarComponent implements OnInit{
   }
 
   routeToMyProfile() {
-    this.router.navigate(['/profile']).then(r => console.log('Navigated to profile page'));
+    this.router.navigate(['/profile']).then(r => {
+      this.profileService.enableProfileView(true);
+      }
+    );
+  }
+
+  screenWidth = window.innerWidth;
+
+  get showLargeMenu() {
+    return this.screenWidth >= 750;
+  }
+
+// Listen to window resize
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.screenWidth = window.innerWidth;
+  }
+
+
+  routeToHome() {
+    this.profileService.enableProfileView(false);
   }
 }
