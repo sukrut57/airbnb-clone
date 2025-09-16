@@ -16,22 +16,13 @@ import {ProfileService} from '../profile/profile.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit{
-  profileStatus: boolean | undefined;
   profileService = inject(ProfileService);
 
 
   ngOnInit(): void {
-    this.listenToProfileEvent();
+    this.pushProfileStatus();
   }
-  listenToProfileEvent(){
-    this.profileService.profileViewObs.subscribe({
-      next: (profileView) => {
-        console.log('Profile view:', profileView);
-        this.profileStatus = profileView
-      },
-      error: (err) => {
-        console.error('Error fetching user details:', err);
-      }
-    })
+  pushProfileStatus(){
+    this.profileService.enableProfileView(false);
   }
 }

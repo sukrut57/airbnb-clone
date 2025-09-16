@@ -33,8 +33,6 @@ export class ProfileComponent implements OnInit{
 
   userDetails : User | undefined;
 
-  profileStatus: boolean | undefined;
-
   userService = inject(UserService);
   toastService = inject(ToastService);
   profileService = inject(ProfileService);
@@ -42,7 +40,7 @@ export class ProfileComponent implements OnInit{
 
   ngOnInit(): void {
     this.getUserDetails();
-    this.listenToProfileEvent();
+    this.pushProfileStatus();
   }
 
   private getUserDetails(){
@@ -57,17 +55,8 @@ export class ProfileComponent implements OnInit{
     });
   }
 
-  listenToProfileEvent(){
-    this.profileService.profileViewObs.subscribe({
-      next: (profileView) => {
-        console.log('Profile view:', profileView);
-
-        this.profileStatus = profileView
-      },
-      error: (err) => {
-        console.error('Error fetching user details:', err);
-      }
-    })
+  pushProfileStatus(){
+    this.profileService.enableProfileView(true);
   }
 
 }

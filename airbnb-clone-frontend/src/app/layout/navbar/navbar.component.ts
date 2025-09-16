@@ -1,4 +1,4 @@
-import {Component, HostListener, inject, input, OnInit} from '@angular/core';
+import {Component, HostListener, inject, input, OnInit, signal} from '@angular/core';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
@@ -12,6 +12,7 @@ import {ToastService} from '../../core/toast/toast.service';
 import {AuthenticationStates} from '../../core/auth/authentication.states';
 import {Router} from '@angular/router';
 import {ProfileService} from '../profile/profile.service';
+import {toSignal} from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -31,11 +32,12 @@ import {ProfileService} from '../profile/profile.service';
 })
 export class NavbarComponent implements OnInit{
 
-  profileView = input<boolean>(false);
 
   keycloakService = inject(KeycloakService);
 
   username = '';
+
+  // profileStatus: boolean | undefined;
 
   isAuthenticated: AuthenticationStates = AuthenticationStates.FirstVisit;
 
@@ -48,6 +50,7 @@ export class NavbarComponent implements OnInit{
 
   ngOnInit() {
    this.listenToAuthenticationStates();
+   //this.listenToProfileView();
   }
 
   login() {
@@ -65,7 +68,6 @@ export class NavbarComponent implements OnInit{
   private listenToAuthenticationStates() {
     this.keycloakService.isAuthenticatedObs.subscribe({
       next: (authState) => {
-        console.log('Auth state:', authState);
 
         switch (authState) {
           case AuthenticationStates.LoggedIn:
@@ -123,10 +125,7 @@ export class NavbarComponent implements OnInit{
   }
 
   routeToMyProfile() {
-    this.router.navigate(['/profile']).then(r => {
-      this.profileService.enableProfileView(true);
-      }
-    );
+    this.router.navigate(['/profile']).then(r =>     this.profileService.enableProfileView(true));
   }
 
   screenWidth = window.innerWidth;
@@ -141,6 +140,18 @@ export class NavbarComponent implements OnInit{
     this.screenWidth = window.innerWidth;
   }
 
+  //older style, .subscribe() in listenToProfileView() without unsubscribing. This risks memory leaks if Navbar is ever destroyed/recreated.
+  // listenToProfileView(){
+  //   this.profileService.profileViewObs.subscribe({
+  //     next: (profileView) => {
+  //       console.log('Profile view:', profileView);
+  //       this.profileStatus = profileView;
+  //     }
+  //   })
+  // }
+
+  //newer style, reactive signal instead of manual subscribe
+  profileStatus = toSignal(this.profileService.profileViewObs,{initialValue: false});
 
   routeToHome() {
     this.profileService.enableProfileView(false);
