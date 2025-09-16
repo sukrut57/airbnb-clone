@@ -3,7 +3,7 @@
   transition: border-color 0.2s ease;
 
   &:hover {
-    border-bottom-color: #DDD !important;
+    border-bottom-color: #0000 !important;
   }
 
   &.category-active {
@@ -11,7 +11,57 @@
 
     &:hover {
       border-bottom-color: #F25B5B !important;  // Keep active color on hover
-      cursor: default;  // Optional: show default cursor on active item
+      cursor: pointer;  // Optional: show default cursor on active item
     }
   }
 }
+
+.rows{
+  display: grid;
+  grid-template-columns: 80% 20%;
+  padding: 0.5rem 1rem;
+}
+
+
+.filter-container{
+  display: flex;
+  align-items: center;
+}
+
+.filter-icon:first-child{
+  min-width: 80px;
+}
+
+.filter-icon:last-child{
+  white-space: nowrap;
+}
+
+
+@media screen and (min-width: 1200px) and (max-width: 1450px)  {
+  .rows{
+    grid-template-columns: 75% 25%;
+  }
+}
+
+@media screen and  (max-width: 1190px) {
+  .rows{
+    grid-template-columns: 70% 30%;
+  }
+}
+
+@media screen and  (max-width: 990px) {
+  .rows{
+    grid-template-columns: 65% 35%;
+  }
+}
+
+@media screen and  (max-width: 850px) {
+  .rows{
+    grid-template-columns: 100% 0;
+  }
+  .filter-container{
+    display: none;
+  }
+}
+
+

@@ -1,5 +1,5 @@
-<div class="row align-items-center border-bottom shadow-sm">
-  <div class="col-9">
+<div class="rows align-items-center border-bottom shadow-sm">
+  <div class="category-container">
     <p-carousel
       [value]="categories"
       [numVisible]="10"
@@ -22,7 +22,7 @@
 
     </p-carousel>
   </div>
-  <div class="col-3">
+  <div class="filter-container" >
     <button class="p-button filter-icon me-3" (click)="enableFilter()">
       <img src = "assets/category-icons/filter-icon.svg" alt="filterIcon" width="30" height="20">
       <span style="font-size: 12px; font-weight: 400">Filters</span>
