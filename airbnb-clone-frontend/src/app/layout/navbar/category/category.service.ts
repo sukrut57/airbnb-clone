@@ -14,7 +14,7 @@ export class CategoryService {
       icon: "",
       technicalName: "ALL",
       displayName: "All",
-      activated: false
+      activated: true
     },
     {
       icon: "assets/category-icons/amazing_views.jpg",

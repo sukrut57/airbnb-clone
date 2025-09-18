@@ -2,7 +2,7 @@ import {IconDefinition} from '@fortawesome/free-regular-svg-icons';
 import {faAirbnb, faFacebook, faGithub, faInstagram, faXTwitter} from '@fortawesome/free-brands-svg-icons';
 import {
   faBars,
-  faGlobe,
+  faGlobe, faLayerGroup,
   faMessage,
   faQuestionCircle,
   faS,
@@ -22,5 +22,6 @@ export const fontAwesomeIcons: IconDefinition[] = [
   faFacebook,
   faXTwitter,
   faInstagram,
-  faMessage
+  faMessage,
+  faLayerGroup,
 ];

@@ -16,6 +16,7 @@
   }
 }
 
+
 .rows{
   display: grid;
   grid-template-columns: 80% 20%;
@@ -40,6 +41,7 @@
 @media screen and (min-width: 1200px) and (max-width: 1450px)  {
   .rows{
     grid-template-columns: 75% 25%;
+    gap: 1.5rem;
   }
 }
 

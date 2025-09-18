@@ -5,17 +5,29 @@
       [numVisible]="10"
       [numScroll]="1"
       [circular]="false"
-      [responsiveOptions]="responsiveOptions">
+      [responsiveOptions]="responsiveOptions"
+      styleClass="category-carousel">
 
       <ng-template let-category pTemplate="item">
-        <ng-container *ngIf="category.technicalName !== 'ALL'">
+        <ng-container>
 
-          <div class="d-flex flex-column align-items-center justify-content-center wrapper"
-               (click)="onChangeCategory(category)" [class.category-active]="category.activated">
+          @if(category.displayName === "All"){
+            <div class="d-flex flex-column align-items-center justify-content-center wrapper" style="padding: 0 0.5rem !important;cursor: pointer;"
+                 (click)="onChangeCategory(category)" [class.category-active]="category.activated">
+              <fa-icon [icon]="['fas', 'layer-group']" class="icon-image" style="color:#505050; font-size: 14px"></fa-icon>
+              <p class="category-name fs-6">{{ category.displayName }}</p>
+            </div>
+          }
 
-            <img [src]="category.icon" alt="categoryImage" class="object-fit-contain icon-image" width="20" height="20">
-            <p class="category-name fs-6">{{ category.displayName }}</p>
-          </div>
+          @else{
+            <div class="d-flex flex-column align-items-center justify-content-center wrapper"
+                 (click)="onChangeCategory(category)" [class.category-active]="category.activated">
+
+              <img [src]="category.icon" alt="categoryImage" class="object-fit-contain icon-image" width="20" height="20">
+              <p class="category-name fs-6">{{ category.displayName }}</p>
+            </div>
+          }
+
         </ng-container>
       </ng-template
       >

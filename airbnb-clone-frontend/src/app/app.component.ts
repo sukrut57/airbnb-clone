@@ -7,11 +7,12 @@ import {FooterComponent} from './layout/footer/footer.component';
 import {MessageService} from 'primeng/api';
 import {ToastService} from './core/toast/toast.service';
 import {ToastModule} from 'primeng/toast';
+import {HomeComponent} from './layout/home/home.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, ToastModule],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, ToastModule, HomeComponent],
   providers:[MessageService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

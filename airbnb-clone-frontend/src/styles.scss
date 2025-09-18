@@ -154,18 +154,12 @@ h1, h2, h3, h4, h5, h6 {
 
   }
 
-  .p-carousel .p-carousel-item:first-child {
-    display: none;
 
-  }
+
   .p-carousel .p-carousel-item {
     padding: 0 0.5rem !important;
     cursor: pointer;
 
-    //&:hover {
-    //  border-bottom: 2px solid $border-color !important;
-    //
-    //}
 
     .category-name {
       padding-top: 0.5rem;
