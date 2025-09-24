@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {HostListener, Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
@@ -13,4 +13,8 @@ export class ProfileService {
   enableProfileView($event: boolean){
     this.profileView$.next($event);
   }
+
+
+
+
 }

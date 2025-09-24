@@ -3,22 +3,33 @@
 .footer-link{
   text-decoration: none;
   color: #000000;
+  font-size: 14px !important;
+
   &:hover{
     text-decoration: underline;
     color: #000000;
   }
 }
 
+
+
+
 .footer-background{
   background-color: #f7f7f7;
-  font-size: 14px;
   color: #222222;
   cursor: pointer;
+  border-top: 1px solid #D1D5DC;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.825rem !important;
+  font-family: 'Airbnb Cereal', sans-serif !important;
+
 }
 
 .footer-text{
   color: #000000;
-  font-size: 14px;
+  font-size: 14px !important;
   font-weight: 500;
 }
 .footer-icon{
@@ -34,4 +45,36 @@
     color: #000000 !important;
     margin: 8px;
   }
+}
+
+@media screen and (max-width:980px ) {
+  .footer-background{
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: flex-start !important;
+    gap: 1rem;
+
+  }
+  .footer-container{
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: flex-start !important;
+
+    div{
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 1rem;
+    }
+
+  }
+
+  @media screen and (max-width: 400px) {
+    .footer-icon,
+    .footer-text{
+      font-size: 10px !important;
+    }
+  }
+
 }

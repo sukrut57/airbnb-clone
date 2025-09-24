@@ -2,7 +2,7 @@ import {Injectable, signal, WritableSignal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {User} from './user.model';
 import {UriConstants} from '../../constants/uri-constants';
-import {catchError, throwError} from 'rxjs';
+import {BehaviorSubject, catchError, throwError} from 'rxjs';
 
 
 @Injectable({
@@ -11,6 +11,7 @@ import {catchError, throwError} from 'rxjs';
 export class UserService {
 
   constructor(private httpClient: HttpClient) { }
+
 
   getUserDetails(){
     return this.httpClient.get<User>(UriConstants.getUserUri()).pipe(

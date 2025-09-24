@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, HostListener, inject, OnInit} from '@angular/core';
 import {AvatarComponent} from '../navbar/avatar/avatar.component';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {RouterLink, RouterLinkActive} from '@angular/router';
@@ -58,5 +58,18 @@ export class ProfileComponent implements OnInit{
   pushProfileStatus(){
     this.profileService.enableProfileView(true);
   }
+
+  screenWidth = window.innerWidth;
+  get showLargeMenu() {
+    return this.screenWidth >= 950;
+  }
+
+
+// Listen to window resize
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.screenWidth = window.innerWidth;
+  }
+
 
 }
