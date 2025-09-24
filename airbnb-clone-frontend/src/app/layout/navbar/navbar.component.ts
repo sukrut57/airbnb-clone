@@ -13,6 +13,7 @@ import {AuthenticationStates} from '../../core/auth/authentication.states';
 import {Router} from '@angular/router';
 import {ProfileService} from '../profile/profile.service';
 import {toSignal} from '@angular/core/rxjs-interop';
+import {User} from '../../core/user/user.model';
 
 
 @Component({
@@ -60,7 +61,10 @@ export class NavbarComponent implements OnInit{
 
   logout() {
     this.keycloakService.logout();
-}
+    this.userService.clearUserDetails();
+    console.log('User details:',  this.test);
+
+  }
   routeToMyGitHub() {
     window.open('https://github.com/sukrut57/airbnb-clone');
   }
@@ -125,7 +129,7 @@ export class NavbarComponent implements OnInit{
   }
 
   routeToMyProfile() {
-    this.router.navigate(['/profile']).then(r =>     this.profileService.enableProfileView(true));
+    this.router.navigate(['/profile']).then(r => this.profileService.enableProfileView(true));
   }
 
   screenWidth = window.innerWidth;
