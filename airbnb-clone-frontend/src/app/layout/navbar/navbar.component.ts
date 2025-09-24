@@ -62,7 +62,6 @@ export class NavbarComponent implements OnInit{
   logout() {
     this.keycloakService.logout();
     this.userService.clearUserDetails();
-    console.log('User details:',  this.test);
 
   }
   routeToMyGitHub() {
