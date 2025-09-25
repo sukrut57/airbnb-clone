@@ -1,4 +1,4 @@
-.profile-section{
+.profile-section,.alt-container{
   font-family: 'Airbnb Cereal', sans-serif;
 }
 
@@ -92,4 +92,26 @@
     border: none;
 
   }
+}
+
+.title{
+  margin-left : -16.25rem;
+}
+.profile-card {
+  min-width: 340px;
+  box-shadow: 15px 15px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.badge-new{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #36454F; /* Airbnb uses dark gray/blue */
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  letter-spacing: 0.5px;
 }
