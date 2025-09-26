@@ -77,6 +77,11 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 !important;
     box-sizing: border-box;
     background-color: $white !important;
+
+    .p-toolbar{
+      border-radius: 0 !important;
+      width: 100% !important;
+    }
   }
   .p-button {
     background-color: $white !important;
@@ -155,7 +160,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 
 
-
   .p-carousel .p-carousel-item {
     padding: 0 0.5rem !important;
     cursor: pointer;
@@ -203,6 +207,14 @@ h1, h2, h3, h4, h5, h6 {
    .p-toast .p-toast-message .p-toast-message-icon {
     margin-right: 1rem !important; /* tweak value as needed */
     font-size: 1rem !important;    /* optional: make icon a bit larger */
+  }
+
+  .profile-container,
+  .p-component,
+   p-card .p-card-body,
+  {
+    border-radius: 24px !important;
+    background-color: transparent !important;
   }
 
 }

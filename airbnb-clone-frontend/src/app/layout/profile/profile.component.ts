@@ -11,6 +11,8 @@ import {FooterComponent} from '../footer/footer.component';
 import {CardModule} from 'primeng/card';
 import {UpperCasePipe} from '@angular/common';
 import {ProfileService} from './profile.service';
+import {FaIconComponent} from '@fortawesome/angular-fontawesome';
+import {KeycloakService} from '../../core/auth/keycloak.service';
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +26,8 @@ import {ProfileService} from './profile.service';
     NavbarComponent,
     FooterComponent,
     CardModule,
-    UpperCasePipe
+    UpperCasePipe,
+    FaIconComponent
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
@@ -36,6 +39,7 @@ export class ProfileComponent implements OnInit{
   userService = inject(UserService);
   toastService = inject(ToastService);
   profileService = inject(ProfileService);
+  keycloakService = inject(KeycloakService);
 
 
   ngOnInit(): void {
@@ -72,4 +76,7 @@ export class ProfileComponent implements OnInit{
   }
 
 
+  logout() {
+    this.keycloakService.logout();
+  }
 }

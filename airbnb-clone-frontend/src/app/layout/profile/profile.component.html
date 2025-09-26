@@ -1,5 +1,6 @@
-<div class="container-fluid p-0 overflow-x-hidden overflow-y-visible" style="height: 100vh !important;">
-  <div class="sticky-top overflow-visible" style="z-index: 100 !important;">
+<div class="container-fluid p-0 overflow-x-hidden overflow-y-visible" style="height: 100vh !important; scrollbar-width: none;">
+
+  <div class="overflow-visible">
     <app-navbar></app-navbar>
   </div>
 
@@ -45,7 +46,7 @@
 
         <div class="d-flex flex-md-column flex-lg-row shrink-1 justify-content-between align-items-center gap-2">
           <div class="fs-2 fw-bold mb-3">
-            <div style="min-width: 350px; box-shadow: 15px 15px 20px 0 rgba(0, 0, 0, 0.1);">
+            <div class="profile-container" style="min-width: 350px; box-shadow: 15px 15px 20px 0 rgba(0, 0, 0, 0.1);">
               <p-card>
                 <div class="d-flex align-items-center flex-column gap-1">
                   <app-avatar [imageUrl] ="" avatarSize="avatar-xl"></app-avatar>
@@ -77,7 +78,7 @@
   @else {
     <div class="d-flex justify-content-center align-items-center flex-grow-1 flex-column gap-2 p-4 relative">
         <div class="fw-bold fs-3 title">Profile</div>
-        <div class="profile-card">
+        <div class="profile-card profile-container" >
           <p-card>
             <div class="d-flex align-items-center flex-column gap-1">
               <app-avatar [imageUrl]="" avatarSize="avatar-xl"></app-avatar>
@@ -88,7 +89,7 @@
         </div>
       <div class="d-flex justify-content-between align-items-center gap-3 mt-3">
 
-        <div class="d-flex flex-shrink-0 position-relative">
+        <div class="d-flex flex-shrink-0 position-relative profile-container">
           <p-card>
           <div class="d-flex align-items-center flex-column gap-1 px-3 ">
             <app-avatar [imageUrl] ="'assets/category-icons/past_trips.png'" avatarSize="avatar-xl"></app-avatar>
@@ -100,7 +101,7 @@
 
         </div>
 
-        <div class="d-flex flex-shrink-0 position-relative">
+        <div class="d-flex flex-shrink-0 position-relative profile-container" >
           <p-card>
             <div class="d-flex flex-column align-items-center gap-1 px-3 ">
               <app-avatar [imageUrl]="'assets/category-icons/connections.png'" avatarSize="avatar-xl"></app-avatar>
@@ -111,6 +112,112 @@
 
           <!-- NEW Badge -->
           <span class="badge-new">NEW</span>
+        </div>
+      </div>
+      <div class="profile-card profile-container" >
+        <p-card>
+          <div class="d-flex align-items-center  gap-1">
+            <img src="/assets/category-icons/host.png" alt="edit" width="64px" class="object-fit-contain">
+            <div class="d-flex flex-column gap-1">
+              <div class="fs-6 fw-bold">Become a host</div>
+              <div class="text-gray" style="font-size: 0.675rem">It's easy to start hosting and earn extra income.</div>
+            </div>
+
+          </div>
+        </p-card>
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center flex-grow-1 flex-column gap-2 p-2 " style="font-family: 'Airbnb Cereal', sans-serif">
+        <div class="d-flex justify-content-between align-items-center px-2 " style="min-width: 350px; cursor: pointer !important;">
+          <div class="d-inline-flex align-items-center gap-4" style="min-width: 200px">
+            <fa-icon [icon]="['fas', 'gear']" class="fs-5"></fa-icon>
+            <div class="fs-6">Account settings</div>
+          </div>
+          <div class="fs-3" style="color:gray !important;" >&gt;</div>
+        </div>
+
+      </div>
+      <div class="d-flex justify-content-center align-items-center flex-grow-1 flex-column gap-2 p-2" style="font-family: 'Airbnb Cereal', sans-serif">
+        <div class="d-flex justify-content-between align-items-center px-2" style="min-width: 350px;cursor: pointer !important;">
+          <div class="d-inline-flex align-items-center gap-4" style="min-width: 200px">
+            <fa-icon [icon]="['far', 'user']" class="fs-5"></fa-icon>
+            <div class="fs-6">View profile</div>
+          </div>
+          <div class="fs-3" style="color:gray !important;" >&gt;</div>
+        </div>
+
+      </div>
+      <div class="d-flex justify-content-center align-items-center flex-grow-1 flex-column gap-2 p-2" style="font-family: 'Airbnb Cereal', sans-serif">
+        <div class="d-flex justify-content-between align-items-center px-2" style="min-width: 350px;cursor: pointer !important;">
+          <div class="d-inline-flex align-items-center gap-4" style="min-width: 200px">
+            <fa-icon [icon]="['far', 'hand']" class="fs-5"></fa-icon>
+            <div class="fs-6">Privacy</div>
+          </div>
+          <div class="fs-3" style="color:gray !important;" >&gt;</div>
+        </div>
+
+      </div>
+      <div class="d-flex justify-content-center align-items-center flex-grow-1 flex-column gap-2 p-2" style="font-family: 'Airbnb Cereal', sans-serif">
+        <div class="d-flex justify-content-between align-items-center px-2" style="min-width: 350px;cursor: pointer !important;">
+          <div class="d-inline-flex align-items-center gap-4" style="min-width: 200px">
+            <fa-icon [icon]="['far', 'circle-question']" class="fs-5"></fa-icon>
+            <div class="fs-6">Get help</div>
+          </div>
+          <div class="fs-3" style="color:gray !important;" >&gt;</div>
+        </div>
+
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="d-flex justify-content-center align-items-center flex-grow-1 flex-column gap-2 p-2" style="font-family: 'Airbnb Cereal', sans-serif">
+        <div class="d-flex justify-content-between align-items-center px-2" style="min-width: 350px;cursor: pointer !important;">
+          <div class="d-inline-flex align-items-center gap-4" style="min-width: 200px">
+            <fa-icon [icon]="['fas', 'user-plus']" class="fs-5"></fa-icon>
+            <div class="fs-6">Refer a host</div>
+          </div>
+          <div class="fs-3" style="color:gray !important;" >&gt;</div>
+        </div>
+
+      </div>
+      <div class="d-flex justify-content-center align-items-center flex-grow-1 flex-column gap-2 p-2" style="font-family: 'Airbnb Cereal', sans-serif">
+        <div class="d-flex justify-content-between align-items-center px-2" style="min-width: 350px;cursor: pointer !important;">
+          <div class="d-inline-flex align-items-center gap-4" style="min-width: 200px">
+            <fa-icon [icon]="['fas', 'person-walking-luggage']" class="fs-5"></fa-icon>
+            <div class="fs-6">Find a co-host</div>
+          </div>
+          <div class="fs-3" style="color:gray !important;" >&gt;</div>
+        </div>
+
+      </div>
+      <div class="d-flex justify-content-center align-items-center flex-grow-1 flex-column gap-2 p-2" style="font-family: 'Airbnb Cereal', sans-serif">
+        <div class="d-flex justify-content-between align-items-center px-2" style="min-width: 350px;cursor: pointer !important;">
+          <div class="d-inline-flex align-items-center gap-4" style="min-width: 200px">
+            <fa-icon [icon]="['fas', 'gift']" class="fs-5"></fa-icon>
+            <div class="fs-6">Gift cards</div>
+          </div>
+          <div class="fs-3" style="color:gray !important;" >&gt;</div>
+        </div>
+
+      </div>
+      <div class="d-flex justify-content-center align-items-center flex-grow-1 flex-column gap-2 p-2" style="font-family: 'Airbnb Cereal', sans-serif">
+        <div class="d-flex justify-content-between align-items-center px-2" style="min-width: 350px;cursor: pointer !important;">
+          <div class="d-inline-flex align-items-center gap-4" style="min-width: 200px">
+            <fa-icon [icon]="['far', 'note-sticky']" class="fs-5"></fa-icon>
+            <div class="fs-6">Legal</div>
+          </div>
+          <div class="fs-3" style="color:gray !important;" >&gt;</div>
+        </div>
+
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center flex-grow-1 flex-column gap-2 p-2" style="font-family: 'Airbnb Cereal', sans-serif">
+        <div class="d-flex justify-content-between align-items-center px-2" style="min-width: 350px;cursor: pointer !important;" (click)="logout()">
+          <div class="d-inline-flex align-items-center gap-4" style="min-width: 200px">
+            <fa-icon [icon]="['fas', 'arrow-right-from-bracket']" class="fs-5"></fa-icon>
+            <div class="fs-6">Logout</div>
+          </div>
+          <div class="fs-3" style="color:gray !important;" >&gt;</div>
         </div>
 
       </div>
