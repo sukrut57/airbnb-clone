@@ -209,14 +209,12 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1rem !important;    /* optional: make icon a bit larger */
   }
 
-  .profile-container,
-  .p-component,
-   p-card .p-card-body,
-  {
-    border-radius: 24px !important;
-    background-color: transparent !important;
-  }
-
+   .profile-container,
+   .profile-container .p-card,
+   .profile-container .p-card .p-card-body{
+      border-radius: 24px !important;
+      background-color: transparent !important;
+   }
 }
 
 .mat-mdc-slide-toggle {

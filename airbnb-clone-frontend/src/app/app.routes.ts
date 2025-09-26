@@ -7,11 +7,13 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    title: 'Airbnb - Home'
 
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    title: 'Airbnb - Profile'
   },
   {
     path: '',
