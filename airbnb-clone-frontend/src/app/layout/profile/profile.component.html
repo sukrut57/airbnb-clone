@@ -5,7 +5,7 @@
   </div>
 
   @if(showLargeMenu){
-    <div class="row flex-grow-1">
+    <div class="row flex-grow-1 h-100">
 
       <div class="col-5 border-end">
         <div class="profile-section d-flex flex-column p-5">
@@ -35,7 +35,6 @@
           </a>
 
         </div>
-
       </div>
 
       <div class="col-7 profile-section p-5">
@@ -131,7 +130,7 @@
         <div class="d-flex justify-content-between align-items-center px-2 " style="min-width: 350px; cursor: pointer !important;">
           <div class="d-inline-flex align-items-center gap-4" style="min-width: 200px">
             <fa-icon [icon]="['fas', 'gear']" class="fs-5"></fa-icon>
-            <div class="fs-6">Account settings</div>
+            <div class="fs-6" (click)="routeToAccountSettings()">Account settings</div>
           </div>
           <div class="fs-3" style="color:gray !important;" >&gt;</div>
         </div>

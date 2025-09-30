@@ -1,7 +1,7 @@
 import {Component, HostListener, inject, OnInit} from '@angular/core';
 import {AvatarComponent} from '../navbar/avatar/avatar.component';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
-import {RouterLink, RouterLinkActive} from '@angular/router';
+import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {ToolbarModule} from 'primeng/toolbar';
 import {NavbarComponent} from '../navbar/navbar.component';
 import {User} from '../../core/user/user.model';
@@ -40,6 +40,7 @@ export class ProfileComponent implements OnInit{
   toastService = inject(ToastService);
   profileService = inject(ProfileService);
   keycloakService = inject(KeycloakService);
+  router = inject(Router);
 
 
   ngOnInit(): void {
@@ -78,5 +79,10 @@ export class ProfileComponent implements OnInit{
 
   logout() {
     this.keycloakService.logout();
+  }
+
+  routeToAccountSettings() {
+    this.router.navigate(['/account-settings'])
+      .then(r => this.profileService.enableProfileView(false));
   }
 }
