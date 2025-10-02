@@ -1,4 +1,5 @@
-.profile-section,.alt-container{
+.profile-section,
+.alt-container {
   font-family: 'Airbnb Cereal', sans-serif;
 }
 
@@ -10,116 +11,145 @@
   font-weight: 500;
   font-size: 1rem;
 
-  &:hover{
+  &:hover {
+    background-color: #f2f2f2 !important;
+  }
+
+  &.active {
     background-color: #f2f2f2 !important;
   }
 }
 
-.active{
-  background-color: #f2f2f2 !important;
-}
-
-
 .avatar-group {
   position: relative;
-  width: 50px;   /* enough space for the stack */
-  height: 50px;  /* adjust to fit 3 avatars */
+  width: 50px;
+  height: 50px;
+
+  app-avatar {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+
+    &:nth-child(1) {
+      top: 0;
+      left: -3px;
+      z-index: 3;
+    }
+
+    &:nth-child(2) {
+      top: 8px;
+      right: 0;
+      width: 24px;
+      height: 24px;
+      z-index: 2;
+    }
+
+    &:nth-child(3) {
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 32px;
+      z-index: 1;
+    }
+  }
 }
 
-.avatar-group app-avatar {
-  position: absolute;
-  width: 36px;
-  height: 36px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-}
-
-/* First avatar: top left */
-.avatar-group app-avatar:nth-child(1) {
-  top: 0;
-  left: -3px;
-  z-index: 3;
-}
-
-/* Second avatar: top right */
-.avatar-group app-avatar:nth-child(2) {
-  top: 8px;
-  right: 0;
-  width: 24px;
-  height: 24px;
-  z-index: 2;
-}
-
-/* Third avatar: bottom center */
-.avatar-group app-avatar:nth-child(3)
-{
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 32px;
-  height: 32px;
-  z-index: 1;
-}
-
-.edit-button{
+.edit-button {
   width: 60px;
   font-size: 0.875rem;
 }
 
-.button{
+.button {
   color: #ffffff;
   font-weight: 500;
   background-color: #f8315a;
-
 }
 
-.divider{
-  width: 100%!important;
+.divider {
+  width: 100% !important;
   height: 1px;
   background-color: #D1D5DC;
   margin: 20px 10px;
 }
 
 .review-button {
-  :hover {
-    background-color: #f2f2f2 !important;
-
-  }
   button {
     padding: 0.5rem 1rem;
     border-radius: 10px;
     background-color: transparent;
     border: none;
 
+    &:hover {
+      background-color: #f2f2f2 !important;
+    }
   }
 }
 
-.title{
-  margin-left : -16.25rem;
+.title {
+  margin-left: -16.25rem;
 }
+
 .profile-card {
   min-width: 340px;
   max-width: 400px;
   box-shadow: 15px 15px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
-.badge-new{
+.badge-new {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: #36454F; /* Airbnb uses dark gray/blue */
+  background-color: #36454F;
   color: white;
   font-size: 0.65rem;
   font-weight: 600;
   padding: 2px 6px;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   letter-spacing: 0.5px;
 }
 
-.spacer{
+.spacer {
   min-width: 340px;
   max-width: 400px;
   border-bottom: 1px solid #D1D5DC;
   margin: 14px 0;
+}
+
+.test {
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100vh !important;
+}
+
+.navbar-container,
+footer-container {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.profile-content {
+  display: flex;
+
+  .profile-left-container {
+    min-width: 450px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navbar-container {
+    min-width: 350px !important;
+  }
+}
+
+.profile-content-container {
+  padding: 0 !important;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh !important;
 }

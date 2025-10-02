@@ -1,5 +1,4 @@
-
-@if(showLargeMenu || profileStatus()){
+@if(showLargeMenu){
   <p-toolbar>
     <ng-template pTemplate="start">
 
@@ -11,7 +10,7 @@
       </a>
     </ng-template>
 
-    @if(!profileStatus()){
+    @if(!profileView()){
       <ng-template pTemplate="center">
         <div class="d-flex pe-3 border rounded-5 bg-white cursor-pointer shadow-sm nav-center flex-shrink-0">
           <button pButton type="button" class="rounded-start-5 border-0">Anywhere</button>
@@ -81,10 +80,6 @@
       </div>
     </ng-template>
   </p-toolbar>
-
 }
 
-@if(!profileStatus()){
-  <app-category></app-category>
-}
 

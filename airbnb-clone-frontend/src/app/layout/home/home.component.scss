@@ -1,6 +1,17 @@
-.navbar-container{
-  width: 100% !important;
+.navbar-container,
+.category-container,
+footer-container{
   padding: 0 !important;
+  overflow: hidden;
+
+}
+
+.home-content{
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100vh !important;
 }
 
 @media screen and (max-width: 500px) {

@@ -1,9 +1,17 @@
+<div class="navbar-container d-flex flex-column">
+  <app-navbar [profileView] = false></app-navbar>
 
-<div class="d-flex flex-column min-vh-100 overflow-x-hidden navbar-container">
-    <app-navbar></app-navbar>
-  <div class="flex-grow-1" style="height: 1000px">
-    <router-outlet></router-outlet>
+  <div class="category-container">
+    <app-category></app-category>
   </div>
 
-  <app-footer></app-footer>
+  <div class="home-content">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    periam architecto atque culpa laudantium odio quibusdam reiciendis, s
+    it unde. Cum distinctio nobis quisquam voluptatem! Atque blanditiis dolorum et maxime obcaecati optio!
+  </div>
+
+  <div class="footer-container">
+    <app-footer></app-footer>
+  </div>
 </div>

@@ -10,7 +10,6 @@ import {ToastService} from '../../core/toast/toast.service';
 import {FooterComponent} from '../footer/footer.component';
 import {CardModule} from 'primeng/card';
 import {UpperCasePipe} from '@angular/common';
-import {ProfileService} from './profile.service';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {KeycloakService} from '../../core/auth/keycloak.service';
 
@@ -38,14 +37,12 @@ export class ProfileComponent implements OnInit{
 
   userService = inject(UserService);
   toastService = inject(ToastService);
-  profileService = inject(ProfileService);
   keycloakService = inject(KeycloakService);
   router = inject(Router);
 
 
   ngOnInit(): void {
     this.getUserDetails();
-    this.pushProfileStatus();
   }
 
   private getUserDetails(){
@@ -60,9 +57,6 @@ export class ProfileComponent implements OnInit{
     });
   }
 
-  pushProfileStatus(){
-    this.profileService.enableProfileView(true);
-  }
 
   screenWidth = window.innerWidth;
   get showLargeMenu() {
@@ -83,6 +77,6 @@ export class ProfileComponent implements OnInit{
 
   routeToAccountSettings() {
     this.router.navigate(['/account-settings'])
-      .then(r => this.profileService.enableProfileView(false));
+      .then(r=> console.log('routed to account settings'));
   }
 }
