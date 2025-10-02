@@ -135,9 +135,11 @@ footer-container {
 
 .profile-content {
   display: flex;
+  width: 100%!important;
 
   .profile-left-container {
     min-width: 450px;
+    flex-grow: 1;
   }
 }
 
@@ -152,4 +154,5 @@ footer-container {
   display: flex;
   flex-wrap: wrap;
   height: 100vh !important;
+  width: 100% !important;
 }
