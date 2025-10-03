@@ -86,7 +86,12 @@ export class KeycloakService {
   }
 
   isTokenValid(): boolean {
-    return !this.keycloak.isTokenExpired() ;
+    if (!this._keycloak) {
+      return false; // Keycloak not initialized
+    }
+
+    // check that a token exists and it hasn't expired
+    return !!this._keycloak.token && !this._keycloak.isTokenExpired();
   }
 
 

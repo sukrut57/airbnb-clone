@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import {HomeComponent} from './layout/home/home.component';
 import {ProfileComponent} from './layout/profile/profile.component';
 import {AccountSettingsComponent} from './layout/profile/account-settings/account-settings.component';
+import {authGuard} from './core/auth/auth.guard';
 
 export const routes: Routes = [
 
@@ -14,7 +15,10 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    title: 'Airbnb - Profile'
+    title: 'Airbnb - Profile',
+    canActivate:[
+      authGuard
+    ]
   },
   {
     path:'account-settings',
