@@ -156,3 +156,10 @@ footer-container {
   height: 100vh !important;
   width: 100% !important;
 }
+
+@media screen and (max-width: 1140px) {
+
+  .user-section{
+    flex-direction: column;
+  }
+}
