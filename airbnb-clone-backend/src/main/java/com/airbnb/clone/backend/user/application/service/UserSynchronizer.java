@@ -42,7 +42,7 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
         //extract user information from the token
         getUserEmail(tokenValue).ifPresentOrElse(userEmail -> {
             //retrieve user from the database
-            Optional<UserEntity> user = retrieveUserByEmail(userEmail);
+            Optional<UserEntity> user = userRepositoryPort.findUserByEmailWithAuthorities(userEmail);
             if(user.isPresent()){
                 //update the user with the latest information from the token
 

@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(name = "authority")
+@Table(name = "authority", schema = "airbnb_clone")
 public class AuthorityEntity {
 
 

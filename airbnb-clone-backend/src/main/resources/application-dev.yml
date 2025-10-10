@@ -25,5 +25,5 @@ keycloak-client:
   client-id: airbnb-client-app
 
 ###
-###  ./mvnw flyway:repair -D"flyway.url=jdbc:postgresql://localhost:5432/airbnb_clone" -D"flyway.user=user" -D"flyway.password=password" -D"flyway.schemas=airbnb_clone"
+#./mvnw flyway:repair -D"flyway.url=jdbc:postgresql://localhost:5432/airbnb_clone" -D"flyway.user=user" -D"flyway.password=password" -D"flyway.schemas=airbnb_clone"
 ###
