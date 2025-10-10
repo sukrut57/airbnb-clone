@@ -7,7 +7,6 @@ import com.airbnb.clone.backend.user.adapter.out.persistence.repository.UserRepo
 import com.airbnb.clone.backend.user.application.mapper.UserMapper;
 import com.airbnb.clone.backend.user.application.port.output.UserRepositoryPort;
 import com.airbnb.clone.backend.user.domain.model.User;
-import com.sun.jdi.PrimitiveValue;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +15,14 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * JPA-based persistence adapter implementing `UserRepositoryPort`.
+ *
+ * ⚙️ Purpose:
+ *  - Encapsulates all database interaction logic.
+ *  - Ensures roles (authorities) are reused from DB — not re-created.
+ *  - Keeps transactional integrity and safe updates for user data.
+ */
 
 @Service
 public class JpaUserRepository implements UserRepositoryPort {

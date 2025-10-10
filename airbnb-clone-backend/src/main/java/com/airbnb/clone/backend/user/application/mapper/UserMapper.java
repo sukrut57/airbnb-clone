@@ -10,13 +10,21 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
-
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+/**
+ * Converts between domain `User` objects and persistence `UserEntity` JPA entities.
+ *
+ * ⚙️ Responsibilities:
+ *  - Provides directional mappings (Domain ↔ Entity ↔ DTO).
+ *  - Avoids persistence logic — purely structural translation.
+ *  - Leaves authority and audit management to repository layer.
+ */
 @Mapper(componentModel = "spring")
 public interface UserMapper {
+
 
     // Map User domain -> UserEntity
     @Mapping(target = "id", ignore = true)
@@ -44,6 +52,21 @@ public interface UserMapper {
                 .collect(Collectors.toSet());
     }
 
+
+    /**
+     * Updates an already-managed JPA `UserEntity` in place with values
+     * from a domain `User` object.
+     *
+     * 🧠 Why this exists:
+     *  - Prevents creating a *new entity instance* (which would cause `INSERT` instead of `UPDATE`).
+     *  - Works safely within the current persistence context.
+     *
+     * ⚠️ Ignored fields:
+     *  - `id` → preserves DB primary key.
+     *  - `publicId` → keeps immutable UUID.
+     *  - `authorities` → handled separately to attach managed AuthorityEntity instances.
+     *  - `createdDate` / `lastModifiedDate` → managed by JPA auditing.
+     */
     // NEW: update an existing UserEntity with values from domain
     @Mapping(target = "id", ignore = true)              // keep DB id untouched
     @Mapping(target = "publicId", ignore = true)        // don’t overwrite PKs/identifiers

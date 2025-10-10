@@ -39,9 +39,11 @@ public class UserEntity extends AbstractAuditingEntity<Integer> {
     /*
     * PERSIST ensures new authorities are saved automatically when saving a new user.
     * MERGE ensures changes to authorities are updated when updating a user.
-    */
+     // 🔸 REMOVED cascade to prevent duplicate authority insertions
+    * */
     /* many-to-many relationship */
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+   // @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_authority",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
