@@ -7,6 +7,6 @@ public class RedisUserEventPublisherAdapter implements PublishUserEventPort {
 
     @Override
     public void publishUserCreatedEvent(User user) {
-
+        //todo
     }
 }
