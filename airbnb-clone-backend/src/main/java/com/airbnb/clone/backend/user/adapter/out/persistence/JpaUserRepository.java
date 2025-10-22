@@ -43,7 +43,7 @@ public class JpaUserRepository implements UserRepositoryPort {
 
     @Transactional
     @Override
-    public void saveUser(User user) {
+    public User saveUser(User user) {
         UserEntity userEntity = userMapper.mapUserDomainToUserEntity(user);
 
 //        //extract the role names from the Authority domain object
@@ -60,7 +60,8 @@ public class JpaUserRepository implements UserRepositoryPort {
        validateAuthoritiesExists(authorityEntities,extractRoles);
 
        log.info("Saving user: {}", user);
-       userRepository.saveAndFlush(userEntity);
+       UserEntity savedUser = userRepository.saveAndFlush(userEntity);
+       return userMapper.mapUserEntityToUserDomain(savedUser);
     }
 
     private void validateAuthoritiesExists(List<AuthorityEntity> authorityEntities, Set<String> extractRoles) {

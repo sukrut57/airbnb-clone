@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UserRepositoryPort {
 
-    void saveUser(User user);
+    User saveUser(User user);
 
     Optional<UserEntity> findUserByEmail(String email);
 

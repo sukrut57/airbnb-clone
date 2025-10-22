@@ -36,6 +36,10 @@ public interface UserMapper {
     @Mapping(target = "authorities", source = "authorities")
     UserDto mapUserEntityToUserDto(UserEntity user);
 
+    @Mapping(target = "authorities", source = "authorities")
+    UserDto mapUserDomainToUserDto(User user);
+
+
     // Map AuthorityEntity -> AuthorityDto
     @Mapping(target = "name", source = "name")
     AuthorityDto mapAuthorityEntityToAuthorityDto(AuthorityEntity authorityEntity);
@@ -102,4 +106,5 @@ public interface UserMapper {
     default String uuidToString(UUID publicId) {
         return publicId == null ? null : publicId.toString();
     }
+
 }

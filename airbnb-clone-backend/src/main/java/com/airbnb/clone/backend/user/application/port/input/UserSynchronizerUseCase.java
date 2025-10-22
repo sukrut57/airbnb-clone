@@ -1,6 +1,7 @@
 package com.airbnb.clone.backend.user.application.port.input;
 
 import com.airbnb.clone.backend.user.adapter.in.rest.dto.UserDto;
+import com.airbnb.clone.backend.user.domain.model.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
 
@@ -13,6 +14,6 @@ public interface UserSynchronizerUseCase {
      */
     void synchronizeWithIdp(Jwt tokenValue);
 
-    UserDto getUserDetails(Authentication connectedUser);
+    User getUserDetails(Authentication connectedUser);
 
 }

@@ -6,6 +6,7 @@ import com.airbnb.clone.backend.user.adapter.in.rest.dto.UserDto;
 import com.airbnb.clone.backend.user.adapter.out.persistence.entities.AuthorityEntity;
 import com.airbnb.clone.backend.user.adapter.out.persistence.entities.UserEntity;
 import com.airbnb.clone.backend.user.application.mapper.UserMapper;
+import com.airbnb.clone.backend.user.application.port.input.UserNotificationUseCase;
 import com.airbnb.clone.backend.user.application.port.input.UserSynchronizerUseCase;
 import com.airbnb.clone.backend.user.application.port.output.UserRepositoryPort;
 import com.airbnb.clone.backend.user.domain.model.Authority;
@@ -31,10 +32,12 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
     private static final Logger log = LoggerFactory.getLogger(UserSynchronizer.class);
 
     private final UserRepositoryPort userRepositoryPort;
+    private final UserNotificationUseCase userNotificationUseCase;
     private final UserMapper userMapper;
 
-    public UserSynchronizer(UserRepositoryPort userRepositoryPort, UserMapper userMapper) {
+    public UserSynchronizer(UserRepositoryPort userRepositoryPort, UserNotificationUseCase userNotificationUseCase, UserMapper userMapper) {
         this.userRepositoryPort = userRepositoryPort;
+        this.userNotificationUseCase = userNotificationUseCase;
         this.userMapper = userMapper;
     }
 
@@ -57,7 +60,10 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
             else{
                 try{
                     User newUserEntityDetails = retrieveUserDetailsFromToken(tokenValue);
-                    userRepositoryPort.saveUser(newUserEntityDetails);
+                    User newlySavedUSer = userRepositoryPort.saveUser(newUserEntityDetails);
+                    //todo send user notification
+                    userNotificationUseCase.notifyUserCreated(newlySavedUSer);
+
                 }
                 catch (Exception e){
                     throw new UserSynchronizationException("Error creating user details", e);
@@ -157,7 +163,7 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
 
 
     @Override
-    public UserDto getUserDetails(Authentication authentication){
+    public User getUserDetails(Authentication authentication){
         if(!(authentication instanceof JwtAuthenticationToken)){
             throw new UserSynchronizationException("Authentication is not a JWT token");
         }
@@ -170,8 +176,7 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
         if(user.isEmpty()){
             throw new UserSynchronizationException("User not found in the database");
         }
-        UserDto userDto = userMapper.mapUserEntityToUserDto(user.get());
-        return userDto;
+        return userMapper.mapUserEntityToUserDomain(user.get());
     }
 
 }
