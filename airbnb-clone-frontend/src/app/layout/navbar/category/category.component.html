@@ -2,15 +2,14 @@
   <div class="category-container">
     <p-carousel
       [value]="categories"
-      [numVisible]="10"
-      [numScroll]="1"
+      [numVisible]="9"
+      [numScroll]="2"
       [circular]="false"
       [responsiveOptions]="responsiveOptions"
       styleClass="category-carousel">
 
       <ng-template let-category pTemplate="item">
         <ng-container>
-
           @if(category.displayName === "All"){
             <div class="d-flex flex-column align-items-center justify-content-center wrapper" style="padding: 0 0.5rem !important;cursor: pointer;"
                  (click)="onChangeCategory(category)" [class.category-active]="category.activated">

@@ -26,6 +26,7 @@ public class UserResource {
 
     @GetMapping("/user")
     public ResponseEntity<UserDto> getUserDetails(Authentication connectedUser){
+        log.info("Getting user details");
         User user = userSynchronizer.getUserDetails(connectedUser);
         UserDto userDto = userMapper.mapUserDomainToUserDto(user);
         return ResponseEntity.ok(userDto);

@@ -1,9 +1,6 @@
 package com.airbnb.clone.backend.user.application.service;
 
 import com.airbnb.clone.backend.shared.exception.UserSynchronizationException;
-import com.airbnb.clone.backend.user.adapter.in.rest.dto.AuthorityDto;
-import com.airbnb.clone.backend.user.adapter.in.rest.dto.UserDto;
-import com.airbnb.clone.backend.user.adapter.out.persistence.entities.AuthorityEntity;
 import com.airbnb.clone.backend.user.adapter.out.persistence.entities.UserEntity;
 import com.airbnb.clone.backend.user.application.mapper.UserMapper;
 import com.airbnb.clone.backend.user.application.port.input.UserNotificationUseCase;

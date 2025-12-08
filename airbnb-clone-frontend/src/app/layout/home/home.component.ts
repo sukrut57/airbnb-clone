@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FooterComponent} from "../footer/footer.component";
 import {NavbarComponent} from "../navbar/navbar.component";
 import {CategoryComponent} from '../navbar/category/category.component';
