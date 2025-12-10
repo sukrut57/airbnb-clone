@@ -49,6 +49,7 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
                 try{
                     User updatedUserEntityDetails = retrieveUserDetailsFromToken(tokenValue);
                     userRepositoryPort.updateUser(updatedUserEntityDetails, user.get());
+
                 }
                 catch (Exception e){
                     throw new UserSynchronizationException("Error updating user details", e);
@@ -58,7 +59,7 @@ public class UserSynchronizer implements UserSynchronizerUseCase {
                 try{
                     User newUserEntityDetails = retrieveUserDetailsFromToken(tokenValue);
                     User newlySavedUSer = userRepositoryPort.saveUser(newUserEntityDetails);
-                    //todo send user notification
+                    log.info("Sending create user event: {}", newlySavedUSer);
                     userNotificationUseCase.notifyUserCreated(newlySavedUSer);
 
                 }

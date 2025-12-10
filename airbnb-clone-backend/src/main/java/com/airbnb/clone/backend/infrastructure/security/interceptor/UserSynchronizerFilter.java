@@ -29,6 +29,7 @@ public class UserSynchronizerFilter extends OncePerRequestFilter {
     }
 
     private boolean isExcludedPath(String path) {
+
         return excludedPaths.stream().anyMatch(path::startsWith);
     }
 
